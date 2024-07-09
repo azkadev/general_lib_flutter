@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      sha256: "0f08b14755d163f6e2134cb58222dd25ea2a2ee8a195e53983d57c075324d592"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -81,7 +89,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.21"
+    version: "0.0.0"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -146,6 +162,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  pointycastle:
+    dependency: "direct overridden"
+    description:
+      name: pointycastle
+      sha256: "70fe966348fe08c34bf929582f1d8247d9d9408130723206472b4687227e4333"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.8.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -232,5 +256,5 @@ packages:
     source: hosted
     version: "13.0.0"
 sdks:
-  dart: ">=3.2.0-0 <4.0.0"
+  dart: ">=3.3.3 <4.0.0"
   flutter: ">=3.10.0"

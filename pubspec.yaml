@@ -1,6 +1,6 @@
 name: 'general_lib_flutter'
 description: 'Library for make flutter more easy and more short with universal extension, utils, and more.'
-version: '0.0.0'
+version: '0.0.23'
 environment: 
   sdk: '>=3.3.3 <4.0.0'
   flutter: '>=3.10.0'
@@ -12,9 +12,12 @@ dev_dependencies:
   flutter_test: 
     sdk: 'flutter'
   flutter_lints: '^2.0.1'
-  general_lib: '^0.0.42'
+  general_lib: '^0.0.43'
 dependency_overrides: 
   pointycastle: '3.8.0'
-publish_to: 'none'
+# publish_to: 'none'
 funding: 
   - 'https://github.com/sponsors/azkadev'
+
+
+repository: https://github.com/azkadev/general_lib_flutter
