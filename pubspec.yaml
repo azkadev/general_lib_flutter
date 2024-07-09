@@ -15,9 +15,6 @@ dev_dependencies:
   general_lib: '^0.0.43'
 dependency_overrides: 
   pointycastle: '3.8.0'
-# publish_to: 'none'
 funding: 
   - 'https://github.com/sponsors/azkadev'
-
-
-repository: https://github.com/azkadev/general_lib_flutter
+repository: 'https://github.com/azkadev/general_lib_flutter'
