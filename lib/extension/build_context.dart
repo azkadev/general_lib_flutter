@@ -44,7 +44,6 @@ import 'package:flutter/material.dart' as material;
 
 import "dart:ui" as ui;
 
-
 extension BuildContextExtension<T> on BuildContext {
   NavigatorState navigator({
     bool rootNavigator = false,

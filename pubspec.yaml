@@ -1,6 +1,6 @@
 name: 'general_lib_flutter'
 description: 'Library for make flutter more easy and more short with universal extension, utils, and more.'
-version: '0.0.23'
+version: '0.0.24'
 environment: 
   sdk: '>=3.3.3 <4.0.0'
   flutter: '>=3.10.0'
