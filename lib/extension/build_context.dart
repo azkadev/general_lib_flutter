@@ -44,6 +44,7 @@ import 'package:flutter/material.dart' as material;
 
 import "dart:ui" as ui;
 
+
 extension BuildContextExtension<T> on BuildContext {
   NavigatorState navigator({
     bool rootNavigator = false,
@@ -298,5 +299,34 @@ extension BuildContextExtension<T> on BuildContext {
       );
     } catch (e) {}
     return Size.zero;
+  }
+
+  Future<T?> showLoadingCircularProgressIndicator<T>({
+    bool barrierDismissible = false,
+    bool canPop = false,
+  }) async {
+    return await material.showDialog<T>(
+      context: this,
+      barrierDismissible: barrierDismissible,
+      useSafeArea: false,
+      useRootNavigator: false,
+      builder: (context) {
+        return PopScope(
+          canPop: canPop,
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: context.theme.dialogBackgroundColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: CircularProgressIndicator(
+                color: context.theme.indicatorColor,
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
