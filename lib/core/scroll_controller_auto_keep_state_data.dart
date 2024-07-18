@@ -3,20 +3,28 @@
 import 'package:flutter/material.dart';
 import 'package:general_lib_flutter/extension/scroll_controller.dart';
 
+/// Auto Keep Scroll Controller 
 class ScrollControllerAutoKeepStateData extends ChangeNotifier {
+  /// bool is_active or attach or scroll listener 
   bool is_activate = false;
+  /// 
   double last_offset = 0;
-  bool is_call_activate = false;
+  /// if done call function initialized set to true
+  bool _is_call_activate = false;
+  /// page_store_key for auto save offset scroll
   late final PageStorageKey page_storage_key;
+  /// page storage bucket for keep data scrolll
   final PageStorageBucket page_storage_bucket = PageStorageBucket();
+  /// call only one
   void Function() on_initialized = () {};
+  /// listen attach or detach
   void Function(bool isAttach, double offset) on_attach_or_detach = (bool isAttach, double offset) {};
-
+  /// scroll_controller
   late ScrollController scroll_controller = ScrollController(
     keepScrollOffset: true,
     onAttach: (position) {
-      if (is_call_activate == false) {
-        is_call_activate = true;
+      if (_is_call_activate == false) {
+        _is_call_activate = true;
         on_initialized();
       }
       on_attach_or_detach(true, position.pixels);
@@ -30,7 +38,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
       update();
     },
   );
-
+  /// safe offset scroll automatic without any hastle
   ScrollControllerAutoKeepStateData({
     required String keyId,
   }) {
@@ -42,11 +50,12 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
     scroll_controller.dispose();
     super.dispose();
   }
-
+  /// notify all listener
   void update() {
     notifyListeners();
   }
-
+  
+  /// listen scroll
   void onScrolling({
     required bool Function() onMounted,
     required void Function(bool isScrolling, double offset) callback,
@@ -58,7 +67,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
       }
     });
   }
-
+  /// wrap page for auto set
   Widget build({
     required Widget child,
   }) {
