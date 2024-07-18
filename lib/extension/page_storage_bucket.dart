@@ -32,15 +32,41 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 
 <!-- END LICENSE --> */
-export "build_context.dart";
-export "connection_state.dart";
-export "global_key.dart";
-export "orientation.dart";
-export "page_storage_bucket.dart";
-export "scroll_controller.dart";
-export "tab_controller.dart";
-export "text_editing_controller.dart";
+// ignore_for_file: empty_catches
 
-export "size.dart";
-export "state.dart";
-export "alignment_geometry.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
+  T readStateData<T>({
+    required BuildContext context,
+    required String key,
+    required T Function(BuildContext context, String key) onNotFound,
+  }) {
+    try {
+      return readState(context, identifier: key) as T;
+    } catch (e) {
+      return onNotFound(context, key);
+    }
+  }
+
+  T? readStateDataOrNull<T>({
+    required BuildContext context,
+    required String key,
+  }) {
+    try {
+      return readState(context, identifier: key) as T;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void writeStateData<T>({
+    required BuildContext context,
+    required String key,
+    required T value,
+  }) {
+    writeState(context, value, identifier: key);
+  }
+}
+ 
