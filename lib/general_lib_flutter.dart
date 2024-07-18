@@ -34,5 +34,6 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 <!-- END LICENSE --> */
 export "general_lib_flutter_core.dart";
 
+export "core/core.dart";
 export "extension/extension.dart";
 export "widget/widget.dart";
