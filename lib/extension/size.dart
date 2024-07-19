@@ -44,4 +44,6 @@ extension SizeGeneralLibFlutterExtension on Size {
   Size general_lib_flutter_dereaseSize(Size size) {
     return Size(width - size.width, height - size.height);
   }
+ 
 }
+ 

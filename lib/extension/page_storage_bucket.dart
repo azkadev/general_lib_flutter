@@ -68,5 +68,24 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
   }) {
     writeState(context, value, identifier: key);
   }
+
+  void removes({
+    required BuildContext context,
+    required List<String> keys,
+  }) {
+    for (String key in keys) {
+      if (key.trim().isEmpty) {
+        continue;
+      }
+      remove(context: context, key: key.trim());
+    }
+  }
+
+  void remove({
+    required BuildContext context,
+    required String key,
+  }) {
+    
+    writeState(context, null, identifier: key);
+  }
 }
- 
