@@ -115,12 +115,8 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: (Brightness.dark == Brightness.light)
-              ? Brightness.dark
-              : Brightness.light,
-          statusBarBrightness: (Brightness.dark == Brightness.light)
-              ? Brightness.light
-              : Brightness.dark,
+          statusBarIconBrightness: (Brightness.dark == Brightness.light) ? Brightness.dark : Brightness.light,
+          statusBarBrightness: (Brightness.dark == Brightness.light) ? Brightness.light : Brightness.dark,
         ),
       );
     }
@@ -128,11 +124,9 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode autoChangeTheme(
-      {required Brightness Function() onChangeBrightness}) {
+  ThemeMode autoChangeTheme({required Brightness Function() onChangeBrightness}) {
     ThemeMode theme_mode = autoChangeThemeMode();
-    autoChangeSystemUi(
-        theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
+    autoChangeSystemUi(theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
     notifyListeners();
     return theme_mode;
   }
@@ -143,8 +137,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
   final ThemeData Function(ThemeData defaultTheme)? lightTheme;
   final ThemeData Function(ThemeData defaultTheme)? darkTheme;
   final Widget? child;
-  final Widget Function(ThemeMode themeMode, ThemeData lightTheme,
-      ThemeData darkTheme, Widget? widget) builder;
+  final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
 
   const GeneralLibFlutterAppMain({
     super.key,
@@ -179,6 +172,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
         primary: Colors.black,
         secondary: Colors.white,
       ),
+      highlightColor: Colors.indigo,
     );
   }
 
@@ -205,6 +199,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       colorScheme: const ColorScheme.dark().copyWith(
         primary: const Color.fromARGB(255, 64, 64, 64),
       ),
+      highlightColor: Colors.cyan
     );
   }
 
@@ -215,12 +210,8 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       builder: (context, child) {
         return builder(
           generalLibFlutterApp.themeMode,
-          (lightTheme != null)
-              ? lightTheme!(lightTheme_default())
-              : lightTheme_default(),
-          (darkTheme != null)
-              ? darkTheme!(darkTheme_default())
-              : darkTheme_default(),
+          (lightTheme != null) ? lightTheme!(lightTheme_default()) : lightTheme_default(),
+          (darkTheme != null) ? darkTheme!(darkTheme_default()) : darkTheme_default(),
           null,
         );
       },
