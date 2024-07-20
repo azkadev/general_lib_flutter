@@ -38,12 +38,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class GeneralLibFlutterApp extends ChangeNotifier {
-  GeneralLibFlutterApp();
-
   ThemeMode themeMode = ThemeMode.system;
 
   AlignmentGeometry switchInitialPosition = Alignment.center;
   AlignmentGeometry switchLastKnownPosition = Alignment.centerLeft;
+
+  GeneralLibFlutterApp();
+
 
   ThemeMode autoChangeThemeMode() {
     switch (switchInitialPosition) {

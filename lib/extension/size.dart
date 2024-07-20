@@ -36,6 +36,8 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 import "dart:ui";
 
+import "package:flutter/material.dart";
+
 extension SizeGeneralLibFlutterExtension on Size {
   Size general_lib_flutter_increaseSize(Size size) {
     return Size(width + size.width, height + size.height);
@@ -44,6 +46,41 @@ extension SizeGeneralLibFlutterExtension on Size {
   Size general_lib_flutter_dereaseSize(Size size) {
     return Size(width - size.width, height - size.height);
   }
- 
+
+  Offset toOffset({
+    required Alignment alignment,
+  }) {
+    
+    // dx: horizontal
+    // min = left
+    // max = right
+    //
+    // dy: vertical
+    // 
+    switch (alignment) {
+      case Alignment.topRight:
+        return Offset(width, 0);
+      case Alignment.topLeft:
+        return const Offset(0, 0);
+      case Alignment.topCenter:
+        return Offset(width / 2, 0);
+
+      case Alignment.centerRight:
+        return Offset(width, height / 2);
+
+      case Alignment.centerLeft:
+        return Offset(0, height / 2);
+      case Alignment.center:
+        return Offset(width / 2, height / 2);
+
+      case Alignment.bottomRight:
+        return Offset(width, height);
+      case Alignment.bottomLeft:
+        return Offset(0, height);
+      case Alignment.bottomCenter:
+        return Offset(width / 2, height);
+      default:
+        return Offset.zero;
+    }
+  }
 }
- 

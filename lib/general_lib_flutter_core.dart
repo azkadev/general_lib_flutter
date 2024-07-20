@@ -49,6 +49,11 @@ class MyScrollBehavior extends MaterialScrollBehavior {
 }
 
 class GeneralLibFlutter {
+  const GeneralLibFlutter();
+  static void ensureInitialized() {
+    WidgetsFlutterBinding.ensureInitialized();
+  }
+
   static BorderRadius borderRadiusBubbleChatMessage({
     required bool isOutGoing,
     double borderMax = 15,
