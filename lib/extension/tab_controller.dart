@@ -41,9 +41,7 @@ extension TabControllerExtension on TabController {
     Duration delayDuration = const Duration(milliseconds: 500),
     bool isReverse = false,
   }) async {
-    for (var i = fromIndex;
-        (!isReverse) ? i < toIndex : i > toIndex;
-        (isReverse) ? i-- : i++) {
+    for (var i = fromIndex; (!isReverse) ? i < toIndex : i > toIndex; (isReverse) ? i-- : i++) {
       await Future.delayed(delayDuration);
       if (isReverse) {
         if (i < 0) {

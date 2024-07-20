@@ -63,7 +63,7 @@ extension BuildContextExtension<T> on BuildContext {
     bool isTopPadding = true,
     bool isRightPadding = true,
   }) {
-    EdgeInsets padding_data = mediaQueryData.padding;
+    final EdgeInsets padding_data = mediaQueryData.padding;
     if (orientation == Orientation.portrait) {
       if (isTopPadding) {
         return padding_data.top;
@@ -113,30 +113,30 @@ extension BuildContextExtension<T> on BuildContext {
     return MediaQuery.of(this).size;
   }
 
-  TextStyle? get displayMedium => Theme.of(this).textTheme.displayMedium;
+  TextStyle? get displayMedium => theme.textTheme.displayMedium;
 
-  TextStyle? get displaySmall => Theme.of(this).textTheme.displaySmall;
+  TextStyle? get displaySmall => theme.textTheme.displaySmall;
 
-  TextStyle? get headlineLarge => Theme.of(this).textTheme.headlineLarge;
+  TextStyle? get headlineLarge => theme.textTheme.headlineLarge;
 
-  TextStyle? get headlineMedium => Theme.of(this).textTheme.headlineMedium;
+  TextStyle? get headlineMedium => theme.textTheme.headlineMedium;
 
-  TextStyle? get titleLarge => Theme.of(this).textTheme.titleLarge;
+  TextStyle? get titleLarge => theme.textTheme.titleLarge;
 
-  TextStyle? get titleMedium => Theme.of(this).textTheme.titleMedium;
+  TextStyle? get titleMedium => theme.textTheme.titleMedium;
 
-  TextStyle? get titleSmall => Theme.of(this).textTheme.titleSmall;
+  TextStyle? get titleSmall => theme.textTheme.titleSmall;
 
-  TextStyle? get labelLarge => Theme.of(this).textTheme.labelLarge;
+  TextStyle? get labelLarge => theme.textTheme.labelLarge;
 
-  TextStyle? get bodySmall => Theme.of(this).textTheme.bodySmall;
+  TextStyle? get bodySmall => theme.textTheme.bodySmall;
 
-  TextStyle? get titleTextStyle => Theme.of(this).appBarTheme.titleTextStyle;
+  TextStyle? get titleTextStyle => theme.appBarTheme.titleTextStyle;
 
   TextStyle? get bodyExtraSmall =>
       bodySmall?.copyWith(fontSize: 10, height: 1.6, letterSpacing: .5);
 
-  TextStyle? get bodyLarge => Theme.of(this).textTheme.bodyLarge;
+  TextStyle? get bodyLarge => theme.textTheme.bodyLarge;
 
   TextStyle? get dividerTextSmall => bodySmall?.copyWith(
       letterSpacing: 0.5, fontWeight: FontWeight.w700, fontSize: 12.0);
@@ -151,25 +151,25 @@ extension BuildContextExtension<T> on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   // colors
-  Color get primaryColor => Theme.of(this).primaryColor;
+  Color get primaryColor => theme.primaryColor;
 
-  Color get primaryColorDark => Theme.of(this).primaryColorDark;
+  Color get primaryColorDark => theme.primaryColorDark;
 
-  Color get primaryColorLight => Theme.of(this).primaryColorLight;
+  Color get primaryColorLight => theme.primaryColorLight;
 
-  Color get primary => Theme.of(this).colorScheme.primary;
+  Color get primary => theme.colorScheme.primary;
 
-  Color get onPrimary => Theme.of(this).colorScheme.onPrimary;
+  Color get onPrimary => theme.colorScheme.onPrimary;
 
-  Color get secondary => Theme.of(this).colorScheme.secondary;
+  Color get secondary => theme.colorScheme.secondary;
 
-  Color get onSecondary => Theme.of(this).colorScheme.onSecondary;
+  Color get onSecondary => theme.colorScheme.onSecondary;
 
-  Color get cardColor => Theme.of(this).cardColor;
+  Color get cardColor => theme.cardColor;
 
-  Color get errorColor => Theme.of(this).colorScheme.error;
+  Color get errorColor => theme.colorScheme.error;
 
-  Color get background => Theme.of(this).colorScheme.background;
+  Color get background => theme.colorScheme.background;
 
   Future<T?> showBottomSheet(
     Widget child, {
@@ -239,12 +239,12 @@ extension BuildContextExtension<T> on BuildContext {
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
   }) async {
     try {
-      RenderRepaintBoundary boundary =
+      final RenderRepaintBoundary boundary =
           findRenderObject() as RenderRepaintBoundary;
 
-      ui.Image image = await boundary.toImage();
+      final ui.Image image = await boundary.toImage();
 
-      ByteData? byteData =
+      final ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
         return null;

@@ -37,14 +37,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 /// tt
-typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(
-    BuildContext context, T statefulWidget);
+typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(BuildContext context, T statefulWidget);
 //
-typedef OnHandleErrorStateFullWidget<T> = FutureOr<dynamic> Function(
-    Object error, StackTrace stackTrace, T statefulWidget);
+typedef OnHandleErrorStateFullWidget<T> = FutureOr<dynamic> Function(Object error, StackTrace stackTrace, T statefulWidget);
 
-extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
-    on State<T> {
+extension GeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> {
   void setStateAsync(
     FutureOr<dynamic> Function() fn, {
     void Function(Object e, StackTrace stackTrace)? onError,
