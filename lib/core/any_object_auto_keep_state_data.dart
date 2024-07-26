@@ -45,6 +45,31 @@ typedef AnyObjectAutoKeepStateDataReturnData<T> = ({
 
 typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T> = FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> Function(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData);
 
+/// auto save data to memory ram
+///
+/// example:
+///
+/// ```dart 
+/// AnyObjectAutoKeepStateData<List<String>>(
+///   data: [],
+///   duration_expire: const Duration(minutes: 10),
+///   onGetDataReFresh: (anyObjectAutoKeepStateData) async {
+///     if (anyObjectAutoKeepStateData.date_time_expire.isExpired() || anyObjectAutoKeepStateData.data.isEmpty) {
+///       return (
+///         data: List.generate(100, (index) {
+///           return "${index}";
+///         }).toList(),
+///         isRefresh: true,
+///       );
+///     }
+///     return (data: <String>[], isRefresh: false);
+///   },
+/// ); 
+/// ```
+///
+/// example full usage
+/// 
+/// 
 class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
   T data;
   DateTime date_time_expire = DateTime.now();
@@ -68,8 +93,8 @@ class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
   FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> defaultOnGetDataRefresh(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData) async {
     return (data: data, isRefresh: false);
   }
-  
-  /// set isRefresh to true for auto save data and set date_time_expire 
+
+  /// set isRefresh to true for auto save data and set date_time_expire
   FutureOr<T> getData() async {
     final AnyObjectAutoKeepStateDataOnGetDataReFresh<T> on_get_data_refresh = onGetDataReFresh ?? defaultOnGetDataRefresh;
     final AnyObjectAutoKeepStateDataReturnData<T> new_data = await on_get_data_refresh(this);

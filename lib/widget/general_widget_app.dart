@@ -134,8 +134,8 @@ class GeneralLibFlutterApp extends ChangeNotifier {
 
 class GeneralLibFlutterAppMain extends StatelessWidget {
   final GeneralLibFlutterApp generalLibFlutterApp;
-  final ThemeData Function(ThemeData defaultTheme)? lightTheme;
-  final ThemeData Function(ThemeData defaultTheme)? darkTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
   final Widget? child;
   final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
 
@@ -151,21 +151,10 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
 
   ThemeData lightTheme_default() {
     final ThemeData themeData = ThemeData.light();
-    return ThemeData(
+    return themeData.copyWith(
       primaryColor: themeData.scaffoldBackgroundColor,
       shadowColor: const Color.fromARGB(110, 0, 0, 0),
-      textTheme: const TextTheme(
-        labelMedium: TextStyle(
-          color: Colors.black,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w500,
-        ),
-        labelSmall: TextStyle(
-          color: Colors.black,
-          fontSize: 14.0,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      textTheme: Typography().black.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.black,
       dialogBackgroundColor: Colors.white,
       cardColor: Colors.grey,
@@ -179,22 +168,10 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
 
   ThemeData darkTheme_default() {
     final ThemeData themeData = ThemeData.dark();
-
-    return ThemeData(
+    return themeData.copyWith(
       primaryColor: themeData.scaffoldBackgroundColor,
       scaffoldBackgroundColor: Colors.black,
-      textTheme: const TextTheme(
-        labelMedium: TextStyle(
-          color: Colors.white,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w400,
-        ),
-        labelSmall: TextStyle(
-          color: Colors.white,
-          fontSize: 14.0,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
+      textTheme: Typography().white.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
@@ -213,8 +190,8 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       builder: (context, child) {
         return builder(
           generalLibFlutterApp.themeMode,
-          (lightTheme != null) ? lightTheme!(lightTheme_default()) : lightTheme_default(),
-          (darkTheme != null) ? darkTheme!(darkTheme_default()) : darkTheme_default(),
+          (lightTheme != null) ? lightTheme!(context, lightTheme_default()) : lightTheme_default(),
+          (darkTheme != null) ? darkTheme!(context, darkTheme_default()) : darkTheme_default(),
           null,
         );
       },
