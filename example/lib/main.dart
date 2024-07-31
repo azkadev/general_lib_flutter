@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Count:"),
+            const Text("Count:"),
             LinearProgressIndicator(
               value: value,
               minHeight: 10,
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
               }
               setState(() {});
               while (true) {
-                await Future.delayed(Duration(milliseconds: 10));
+                await Future.delayed(const Duration(milliseconds: 10));
                 value += 0.001;
 
                 setState(() {});

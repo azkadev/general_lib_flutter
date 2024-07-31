@@ -52,7 +52,8 @@ extension TextEditingControllerExtension on TextEditingController {
     required String newText,
     Duration delayDuration = const Duration(milliseconds: 100),
   }) async {
-    final List<String> characters = newText.characters.toList().reversed.toList();
+    final List<String> characters =
+        newText.characters.toList().reversed.toList();
     for (var i = 0; i < characters.length; i++) {
       await Future.delayed(delayDuration);
       text = text.substring(0, text.length - 1);

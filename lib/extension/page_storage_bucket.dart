@@ -85,7 +85,6 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
     required BuildContext context,
     required String key,
   }) {
-    
     writeState(context, null, identifier: key);
   }
 }

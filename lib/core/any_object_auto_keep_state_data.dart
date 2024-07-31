@@ -43,13 +43,15 @@ typedef AnyObjectAutoKeepStateDataReturnData<T> = ({
   bool isRefresh,
 });
 
-typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T> = FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> Function(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData);
+typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T>
+    = FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> Function(
+        AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData);
 
 /// auto save data to memory ram
 ///
 /// example:
 ///
-/// ```dart 
+/// ```dart
 /// AnyObjectAutoKeepStateData<List<String>>(
 ///   data: [],
 ///   duration_expire: const Duration(minutes: 10),
@@ -64,12 +66,12 @@ typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T> = FutureOr<AnyObjectAutoKe
 ///     }
 ///     return (data: <String>[], isRefresh: false);
 ///   },
-/// ); 
+/// );
 /// ```
 ///
 /// example full usage
-/// 
-/// 
+///
+///
 class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
   T data;
   DateTime date_time_expire = DateTime.now();
@@ -90,14 +92,17 @@ class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> defaultOnGetDataRefresh(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData) async {
+  FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> defaultOnGetDataRefresh(
+      AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData) async {
     return (data: data, isRefresh: false);
   }
 
   /// set isRefresh to true for auto save data and set date_time_expire
   FutureOr<T> getData() async {
-    final AnyObjectAutoKeepStateDataOnGetDataReFresh<T> on_get_data_refresh = onGetDataReFresh ?? defaultOnGetDataRefresh;
-    final AnyObjectAutoKeepStateDataReturnData<T> new_data = await on_get_data_refresh(this);
+    final AnyObjectAutoKeepStateDataOnGetDataReFresh<T> on_get_data_refresh =
+        onGetDataReFresh ?? defaultOnGetDataRefresh;
+    final AnyObjectAutoKeepStateDataReturnData<T> new_data =
+        await on_get_data_refresh(this);
     if (new_data.isRefresh) {
       data = new_data.data;
       if (is_skip_auto_set_date_time_expire == false) {
@@ -109,7 +114,8 @@ class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
   }
 
   void reset({
-    void Function(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData)? onReset,
+    void Function(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData)?
+        onReset,
   }) {
     DateTime dateTime = DateTime.now().subtract(const Duration(seconds: 10));
     date_time_expire = dateTime;

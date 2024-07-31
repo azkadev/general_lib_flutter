@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 /* <!-- START LICENSE -->
 
 
@@ -64,12 +66,12 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 // Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba tiba di potong akhirnya bantuan / software kadang tidak lengkap
 
 // <!-- END LICENSE --> */
- import 'dart:io';
+import 'dart:io';
 
 import 'package:general_lib/general_lib.dart';
 
 void main(List<String> args) {
-  
-  Directory? directory = Dart.pub.installFromDirectory(directoryPackage: Directory.current);
+  Directory? directory =
+      Dart.pub.installFromDirectory(directoryPackage: Directory.current);
   print(directory);
 }

@@ -52,14 +52,14 @@ extension BuildContextExtension<T> on BuildContext {
   }
 
   BoxConstraints boxConstraints({
-  double? minWidth,
-  double maxWidth = double.infinity,
-  double? minHeight,
-  double maxHeight = double.infinity,
+    double? minWidth,
+    double maxWidth = double.infinity,
+    double? minHeight,
+    double maxHeight = double.infinity,
   }) {
     return BoxConstraints(
-      minHeight:minHeight ?? height,
-      minWidth:minWidth?? width,
+      minHeight: minHeight ?? height,
+      minWidth: minWidth ?? width,
       maxHeight: maxHeight,
       maxWidth: maxWidth,
     );
@@ -97,11 +97,13 @@ extension BuildContextExtension<T> on BuildContext {
   }
 
   bool get isTablet {
-    return MediaQuery.of(this).size.width < 1024.0 && MediaQuery.of(this).size.width >= 650.0;
+    return MediaQuery.of(this).size.width < 1024.0 &&
+        MediaQuery.of(this).size.width >= 650.0;
   }
 
   bool get isSmallTablet {
-    return MediaQuery.of(this).size.width < 650.0 && MediaQuery.of(this).size.width > 500.0;
+    return MediaQuery.of(this).size.width < 650.0 &&
+        MediaQuery.of(this).size.width > 500.0;
   }
 
   bool get isDesktop {
@@ -109,7 +111,8 @@ extension BuildContextExtension<T> on BuildContext {
   }
 
   bool get isSmall {
-    return MediaQuery.of(this).size.width < 850.0 && MediaQuery.of(this).size.width >= 560.0;
+    return MediaQuery.of(this).size.width < 850.0 &&
+        MediaQuery.of(this).size.width >= 560.0;
   }
 
   double get width {
@@ -144,13 +147,19 @@ extension BuildContextExtension<T> on BuildContext {
 
   TextStyle? get titleTextStyle => theme.appBarTheme.titleTextStyle;
 
-  TextStyle? get bodyExtraSmall => bodySmall?.copyWith(fontSize: 10, height: 1.6, letterSpacing: .5);
+  TextStyle? get bodyExtraSmall =>
+      bodySmall?.copyWith(fontSize: 10, height: 1.6, letterSpacing: .5);
 
   TextStyle? get bodyLarge => theme.textTheme.bodyLarge;
 
-  TextStyle? get dividerTextSmall => bodySmall?.copyWith(letterSpacing: 0.5, fontWeight: FontWeight.w700, fontSize: 12.0);
+  TextStyle? get dividerTextSmall => bodySmall?.copyWith(
+      letterSpacing: 0.5, fontWeight: FontWeight.w700, fontSize: 12.0);
 
-  TextStyle? get dividerTextLarge => bodySmall?.copyWith(letterSpacing: 1.5, fontWeight: FontWeight.w700, fontSize: 13.0, height: 1.23);
+  TextStyle? get dividerTextLarge => bodySmall?.copyWith(
+      letterSpacing: 1.5,
+      fontWeight: FontWeight.w700,
+      fontSize: 13.0,
+      height: 1.23);
 
   // colors
   ThemeData get theme => Theme.of(this);
@@ -174,7 +183,7 @@ extension BuildContextExtension<T> on BuildContext {
 
   Color get errorColor => theme.colorScheme.error;
 
-  Color get background => theme.colorScheme.background;
+  Color get background => theme.colorScheme.surface;
 
   Future<T?> showBottomSheet(
     Widget child, {
@@ -199,7 +208,8 @@ extension BuildContextExtension<T> on BuildContext {
     return ScaffoldMessenger.of(this);
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(String message) {
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
+      String message) {
     return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -243,11 +253,13 @@ extension BuildContextExtension<T> on BuildContext {
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
   }) async {
     try {
-      final RenderRepaintBoundary boundary = findRenderObject() as RenderRepaintBoundary;
+      final RenderRepaintBoundary boundary =
+          findRenderObject() as RenderRepaintBoundary;
 
       final ui.Image image = await boundary.toImage();
 
-      final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
         return null;
       }
@@ -265,7 +277,8 @@ extension BuildContextExtension<T> on BuildContext {
     double alignment = 0.0,
     Duration? duration,
     Curve curve = Curves.ease,
-    ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit,
+    ScrollPositionAlignmentPolicy alignmentPolicy =
+        ScrollPositionAlignmentPolicy.explicit,
   }) async {
     return await Scrollable.ensureVisible(
       this,
@@ -301,6 +314,7 @@ extension BuildContextExtension<T> on BuildContext {
     return Size.zero;
   }
 
+  // ignore: avoid_shadowing_type_parameters
   Future<T?> showLoadingCircularProgressIndicator<T>({
     bool barrierDismissible = false,
     bool canPop = false,

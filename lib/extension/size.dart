@@ -34,7 +34,6 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 <!-- END LICENSE --> */
 // ignore_for_file: non_constant_identifier_names
 
-
 import "package:flutter/material.dart";
 
 extension SizeGeneralLibFlutterExtension on Size {
@@ -49,13 +48,12 @@ extension SizeGeneralLibFlutterExtension on Size {
   Offset toOffset({
     required Alignment alignment,
   }) {
-    
     // dx: horizontal
     // min = left
     // max = right
     //
     // dy: vertical
-    // 
+    //
     switch (alignment) {
       case Alignment.topRight:
         return Offset(width, 0);
