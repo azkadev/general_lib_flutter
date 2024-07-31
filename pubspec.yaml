@@ -8,7 +8,6 @@ dependencies:
   flutter: 
     sdk: 'flutter'
   universal_io: '^2.2.2'
-  # general_lib_assets_flutter: ^0.0.0
 dev_dependencies: 
   flutter_test: 
     sdk: 'flutter'

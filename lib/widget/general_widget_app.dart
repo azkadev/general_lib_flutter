@@ -153,7 +153,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
     final ThemeData themeData = ThemeData.light();
     return themeData.copyWith(
       primaryColor: themeData.scaffoldBackgroundColor,
-      shadowColor: const Color.fromARGB(110, 0, 0, 0),
+      shadowColor: const Color.fromARGB(255, 0, 0, 0).withAlpha(110),
       textTheme: Typography().black.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.black,
       dialogBackgroundColor: Colors.white,
@@ -170,12 +170,12 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
     final ThemeData themeData = ThemeData.dark();
     return themeData.copyWith(
       primaryColor: themeData.scaffoldBackgroundColor,
+      shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
       scaffoldBackgroundColor: Colors.black,
       textTheme: Typography().white.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
-      shadowColor: const Color.fromARGB(255, 24, 4, 83),
       colorScheme: const ColorScheme.dark().copyWith(
         primary: const Color.fromARGB(255, 64, 64, 64),
       ),
