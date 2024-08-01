@@ -36,8 +36,8 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
- import 'package:general_lib_flutter/extension/build_context.dart';
- 
+import 'package:general_lib_flutter/extension/build_context.dart';
+
 class GeneralLibFlutterApp extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
 
@@ -113,11 +113,13 @@ class GeneralLibFlutterApp extends ChangeNotifier {
         ),
       );
     } else if (theme_mode == ThemeMode.system) {
+      Brightness brightness = onChangeBrightness();
+      // brightness ;
       SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
+        SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: (Brightness.dark == Brightness.light) ? Brightness.dark : Brightness.light,
-          statusBarBrightness: (Brightness.dark == Brightness.light) ? Brightness.light : Brightness.dark,
+          statusBarIconBrightness: (brightness == Brightness.light) ? Brightness.dark : Brightness.light,
+          statusBarBrightness: (brightness == Brightness.light) ? Brightness.light : Brightness.dark,
         ),
       );
     }
@@ -142,6 +144,7 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       autoChangeSystemUi(
         theme_mode: themeMode,
         onChangeBrightness: () {
+          
           return context.mediaQueryData.platformBrightness;
         },
       );
