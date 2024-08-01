@@ -36,13 +36,14 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+ import 'package:general_lib_flutter/extension/build_context.dart';
+ 
 class GeneralLibFlutterApp extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
 
   AlignmentGeometry switchInitialPosition = Alignment.center;
   AlignmentGeometry switchLastKnownPosition = Alignment.centerLeft;
-
+  bool is_has_set_theme_status_bar_first = false;
   GeneralLibFlutterApp();
 
   ThemeMode autoChangeThemeMode() {
@@ -115,12 +116,8 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: (Brightness.dark == Brightness.light)
-              ? Brightness.dark
-              : Brightness.light,
-          statusBarBrightness: (Brightness.dark == Brightness.light)
-              ? Brightness.light
-              : Brightness.dark,
+          statusBarIconBrightness: (Brightness.dark == Brightness.light) ? Brightness.dark : Brightness.light,
+          statusBarBrightness: (Brightness.dark == Brightness.light) ? Brightness.light : Brightness.dark,
         ),
       );
     }
@@ -128,25 +125,38 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode autoChangeTheme(
-      {required Brightness Function() onChangeBrightness}) {
+  ThemeMode autoChangeTheme({required Brightness Function() onChangeBrightness}) {
     ThemeMode theme_mode = autoChangeThemeMode();
-    autoChangeSystemUi(
-        theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
+    autoChangeSystemUi(theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
     notifyListeners();
     return theme_mode;
+  }
+
+  void initState({
+    required BuildContext context,
+    required ThemeMode themeMode,
+    required void Function() onSet,
+  }) {
+    if (is_has_set_theme_status_bar_first == false) {
+      is_has_set_theme_status_bar_first = true;
+      autoChangeSystemUi(
+        theme_mode: themeMode,
+        onChangeBrightness: () {
+          return context.mediaQueryData.platformBrightness;
+        },
+      );
+
+      onSet();
+    }
   }
 }
 
 class GeneralLibFlutterAppMain extends StatelessWidget {
   final GeneralLibFlutterApp generalLibFlutterApp;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
-      lightTheme;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
-      darkTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
   final Widget? child;
-  final Widget Function(ThemeMode themeMode, ThemeData lightTheme,
-      ThemeData darkTheme, Widget? widget) builder;
+  final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
 
   const GeneralLibFlutterAppMain({
     super.key,
@@ -163,9 +173,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
     return themeData.copyWith(
       primaryColor: themeData.scaffoldBackgroundColor,
       shadowColor: const Color.fromARGB(255, 0, 0, 0).withAlpha(110),
-      textTheme: Typography()
-          .black
-          .apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
+      textTheme: Typography().black.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.black,
       dialogBackgroundColor: Colors.white,
       cardColor: Colors.grey,
@@ -183,9 +191,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       primaryColor: themeData.scaffoldBackgroundColor,
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
       scaffoldBackgroundColor: Colors.black,
-      textTheme: Typography()
-          .white
-          .apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
+      textTheme: Typography().white.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
@@ -203,12 +209,8 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       builder: (context, child) {
         return builder(
           generalLibFlutterApp.themeMode,
-          (lightTheme != null)
-              ? lightTheme!(context, lightTheme_default())
-              : lightTheme_default(),
-          (darkTheme != null)
-              ? darkTheme!(context, darkTheme_default())
-              : darkTheme_default(),
+          (lightTheme != null) ? lightTheme!(context, lightTheme_default()) : lightTheme_default(),
+          (darkTheme != null) ? darkTheme!(context, darkTheme_default()) : darkTheme_default(),
           null,
         );
       },

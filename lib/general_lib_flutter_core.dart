@@ -32,6 +32,8 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 
 <!-- END LICENSE --> */
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -95,4 +97,22 @@ class GeneralLibFlutter {
 
     return BorderRadius.circular(borderMax);
   }
+}
+
+void assertAsync({
+  required FutureOr<dynamic> Function() function,
+}) {
+  assert(() {
+    Future(function);
+    return true;
+  }());
+}
+
+void assertSync({
+  required dynamic Function() function,
+}) {
+  assert(() {
+    function();
+    return true;
+  }());
 }
