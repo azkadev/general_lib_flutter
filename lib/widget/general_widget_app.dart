@@ -144,7 +144,6 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       autoChangeSystemUi(
         theme_mode: themeMode,
         onChangeBrightness: () {
-          
           return context.mediaQueryData.platformBrightness;
         },
       );
@@ -191,7 +190,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
   ThemeData darkTheme_default() {
     final ThemeData themeData = ThemeData.dark();
     return themeData.copyWith(
-      primaryColor: themeData.scaffoldBackgroundColor,
+      primaryColor: const Color.fromARGB(255, 30, 30, 30),
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
       scaffoldBackgroundColor: Colors.black,
       textTheme: Typography().white.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter"),
