@@ -74,11 +74,12 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     }
   }
 
-  Future<Uint8List?> toImagePng({
+  Future<Uint8List?> toImagePng({double pixelRatio = 1.0,
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
   }) async {
     try {
       return await currentContext!.toImagePng(
+        pixelRatio: pixelRatio,
         onError: onError,
       );
     } catch (e, stack) {

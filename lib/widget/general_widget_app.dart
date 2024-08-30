@@ -184,6 +184,10 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
         secondary: Colors.white,
       ),
       highlightColor: Colors.indigo,
+      textSelectionTheme: themeData.textSelectionTheme.copyWith(
+        cursorColor: Colors.black,
+        selectionColor: Colors.black.withOpacity(0.4),
+      ),
     );
   }
 
@@ -201,6 +205,10 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
         primary: const Color.fromARGB(255, 64, 64, 64),
       ),
       highlightColor: Colors.cyan,
+      textSelectionTheme: themeData.textSelectionTheme.copyWith(
+        cursorColor: Colors.white,
+        selectionColor: Colors.white.withOpacity(0.4),
+      ),
     );
   }
 

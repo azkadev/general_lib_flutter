@@ -248,12 +248,15 @@ extension BuildContextExtension<T> on BuildContext {
   }
 
   Future<Uint8List?> toImagePng({
+    double pixelRatio = 1.0,
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
   }) async {
     try {
       final RenderRepaintBoundary boundary = findRenderObject() as RenderRepaintBoundary;
 
-      final ui.Image image = await boundary.toImage();
+      final ui.Image image = await boundary.toImage(
+        pixelRatio: pixelRatio,
+      );
 
       final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
