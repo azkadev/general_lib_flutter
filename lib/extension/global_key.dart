@@ -107,4 +107,8 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     } catch (e) {}
     return null;
   }
+
+  skoak() {
+    
+  }
 }
