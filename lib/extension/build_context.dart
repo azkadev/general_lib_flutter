@@ -50,6 +50,19 @@ extension BuildContextExtension<T> on BuildContext {
   }) {
     return Navigator.of(this, rootNavigator: rootNavigator);
   }
+ 
+  
+  Router<A> router<A extends Object?>() {
+    return Router.of<A>(this);
+  }
+
+  PageStorageBucket? get pageStorageBucketMaybeOf {
+    return PageStorage.maybeOf(this);
+  }
+
+  PageStorageBucket get pageStorageBucket {
+    return PageStorage.of(this);
+  }
 
   BoxConstraints boxConstraints({
     double? minWidth,

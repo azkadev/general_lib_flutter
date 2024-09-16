@@ -216,12 +216,13 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: generalLibFlutterApp,
+      child: child,
       builder: (context, child) {
         return builder(
           generalLibFlutterApp.themeMode,
           (lightTheme != null) ? lightTheme!(context, lightTheme_default()) : lightTheme_default(),
           (darkTheme != null) ? darkTheme!(context, darkTheme_default()) : darkTheme_default(),
-          null,
+          child,
         );
       },
     );

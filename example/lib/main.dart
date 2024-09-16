@@ -33,26 +33,48 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 // import 'package:flutter/material.dart';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:general_lib_flutter/general_lib_flutter.dart";
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
-      home: HomePage(),
+    return MaterialApp(
+      routes: route.toRoutes(),
+      initialRoute: "/", 
+      onUnknownRoute: route.toOnUnknownRoute,
     );
   }
+
+  final RouteGeneralLibFlutter route = RouteGeneralLibFlutter(
+    pageStorageBucket: PageStorageBucket(),
+    key: "home",
+    onUnknownRoute: (context, routeData) {
+      print("not found: ${routeData.routeName}");
+      print(routeData.arguments);
+      return const HomePage();
+    },
+    onRoute: () {
+      return {
+        "/": (context, data) {
+          data;
+          return const HomePage();
+        },
+        "/sign": (context, data) {
+          print("sign route");
+          return const SignPage();
+        },
+      };
+    },
+  );
 }
 
 class HomePage extends StatefulWidget {
@@ -67,6 +89,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -82,24 +107,54 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          handleFunction(
-            onFunction: (context, statefulWidget) async {
-              if (value >= 1) {
-                value = 0;
-              }
-              setState(() {});
-              while (true) {
-                await Future.delayed(const Duration(milliseconds: 10));
-                value += 0.001;
+          context.pageStorageBucket.writeState(context, "slewlpalsp", identifier: "args");
+          context.navigator().pushNamed("/sign/sasa/sa", arguments: "Asa");
+          // context.routeGeneralLibFlutterPushNamed(routeName: "/sign", parameters: context);
+          // context.navigator().push(
+          //   MaterialPageRoute(
+          //     builder: (context) {
+          //       return SignPage();
+          //     },
+          //   ),
+          //   // ModalRoute.withName('/'),
+          // );
 
-                setState(() {});
-                if (value >= 1) {
-                  break;
-                }
-              }
-            },
-          );
+          // handleFunction(
+          //   onFunction: (context, statefulWidget) async {
+          //     if (value >= 1) {
+          //       value = 0;
+          //     }
+          //     setState(() {});
+          //     while (true) {
+          //       await Future.delayed(const Duration(milliseconds: 10));
+          //       value += 0.001;
+
+          //       setState(() {});
+          //       if (value >= 1) {
+          //         break;
+          //       }
+          //     }
+          //   },
+          // );
         },
+      ),
+    );
+  }
+}
+
+class SignPage extends StatefulWidget {
+  const SignPage({super.key});
+
+  @override
+  State<SignPage> createState() => _SignPageState();
+}
+
+class _SignPageState extends State<SignPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sign Page"),
       ),
     );
   }
