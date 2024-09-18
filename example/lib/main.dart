@@ -49,27 +49,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: route.toRoutes(),
-      initialRoute: "/", 
+      initialRoute: "/",
+      onGenerateInitialRoutes: route.toOnGenerateInitialRoutes,
       onUnknownRoute: route.toOnUnknownRoute,
+      onGenerateRoute: route.toOnGenerateRoute,
     );
   }
 
   final RouteGeneralLibFlutter route = RouteGeneralLibFlutter(
-    pageStorageBucket: PageStorageBucket(),
-    key: "home",
     onUnknownRoute: (context, routeData) {
-      print("not found: ${routeData.routeName}");
-      print(routeData.arguments);
-      return const HomePage();
+       return const HomePage();
     },
     onRoute: () {
       return {
         "/": (context, data) {
-          data;
           return const HomePage();
         },
         "/sign": (context, data) {
-          print("sign route");
           return const SignPage();
         },
       };
@@ -107,8 +103,8 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pageStorageBucket.writeState(context, "slewlpalsp", identifier: "args");
-          context.navigator().pushNamed("/sign/sasa/sa", arguments: "Asa");
+          // context.pageStorageBucket.writeState(context, "slewlpalsp", identifier: "args");
+          context.navigator().pushNamed("/sign/sasa/dalplpe/fepltpee/epl", arguments: "Asa");
           // context.routeGeneralLibFlutterPushNamed(routeName: "/sign", parameters: context);
           // context.navigator().push(
           //   MaterialPageRoute(
