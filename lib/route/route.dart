@@ -99,7 +99,7 @@ class RouteGeneralLibFlutter {
     return getPattern;
   }
 
-  List<Route<dynamic>> toOnGenerateInitialRoutes(String initialRoute) { 
+  List<Route<dynamic>> toOnGenerateInitialRoutes(String initialRoute) {
     if (initialRoute == "/") {
       return [
         toRoute(
@@ -201,6 +201,89 @@ class RouteGeneralLibFlutter {
     result.addAll(otherRoutes ?? {});
     return result;
   }
+
+  MaterialApp toMaterialApp({
+    Key? key,
+    GlobalKey<NavigatorState>? navigatorKey,
+    GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
+    Widget? home, 
+    String initialRoute = "/",
+    bool Function(NavigationNotification navigationNotification)? onNavigationNotification,
+    List<NavigatorObserver> navigatorObservers = const <NavigatorObserver>[],
+    Widget Function(BuildContext context, Widget? widget)? builder,
+    String title = '',
+    String Function(BuildContext context)? onGenerateTitle,
+    Color? color,
+    ThemeData? theme,
+    ThemeData? darkTheme,
+    ThemeData? highContrastTheme,
+    ThemeData? highContrastDarkTheme,
+    ThemeMode? themeMode = ThemeMode.system,
+    Duration themeAnimationDuration = kThemeAnimationDuration,
+    Curve themeAnimationCurve = Curves.linear,
+    Locale? locale,
+    Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+    Locale? Function(List<Locale>? locales, Iterable<Locale> supportedLocales)? localeListResolutionCallback,
+    Locale? Function(Locale? locale, Iterable<Locale> supportedLocales)? localeResolutionCallback,
+    Iterable<Locale> supportedLocales = const <Locale>[Locale('en', 'US')],
+    bool debugShowMaterialGrid = false,
+    bool showPerformanceOverlay = false,
+    bool checkerboardRasterCacheImages = false,
+    bool checkerboardOffscreenLayers = false,
+    bool showSemanticsDebugger = false,
+    bool debugShowCheckedModeBanner = true,
+    Map<ShortcutActivator, Intent>? shortcuts,
+    Map<Type, Action<Intent>>? actions,
+    String? restorationScopeId,
+    ScrollBehavior? scrollBehavior,
+    bool useInheritedMediaQuery = false,
+    AnimationStyle? themeAnimationStyle,
+  }) {
+    return MaterialApp(
+      routes: toRoutes(),
+      initialRoute: initialRoute,
+      onGenerateInitialRoutes: toOnGenerateInitialRoutes,
+      onUnknownRoute: toOnUnknownRoute,
+      onGenerateRoute: toOnGenerateRoute,
+
+      key: key,
+      navigatorKey: navigatorKey,
+      scaffoldMessengerKey: scaffoldMessengerKey,
+      actions: actions,
+      // ignore: deprecated_member_use
+      useInheritedMediaQuery: useInheritedMediaQuery,
+      restorationScopeId: restorationScopeId,
+      localeResolutionCallback: localeResolutionCallback,
+      localeListResolutionCallback: localeListResolutionCallback,
+      checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+      theme: theme,
+      themeAnimationCurve: themeAnimationCurve,
+      themeAnimationDuration: themeAnimationDuration,
+      themeAnimationStyle: themeAnimationStyle,
+      themeMode: themeMode,
+      title: title,
+      onGenerateTitle: onGenerateTitle,
+      onNavigationNotification: onNavigationNotification,
+      navigatorObservers: navigatorObservers,
+      checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+      showPerformanceOverlay: showPerformanceOverlay,
+      scrollBehavior: scrollBehavior,
+      shortcuts: shortcuts,
+      showSemanticsDebugger: showSemanticsDebugger,
+      supportedLocales: supportedLocales,
+      darkTheme: darkTheme,
+      debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+      debugShowMaterialGrid: debugShowMaterialGrid,
+      highContrastDarkTheme: highContrastDarkTheme,
+      localizationsDelegates: localizationsDelegates,
+      highContrastTheme: highContrastTheme,
+      home: home,
+      locale: locale,
+      color: color,
+      builder: builder,
+      
+    );
+  }
 }
 
 class RouterGeneralLibFlutter {
@@ -228,45 +311,47 @@ class RouterGeneralLibFlutter {
 
   Future<T?> pushNamed<T extends Object?>({
     required String routeName,
-    Object? parameters,
+    Object? arguments,
   }) {
-    return navigator.pushNamed(
+    return navigator.pushNamed<T>(
       routeName,
-      arguments: parameters,
+      arguments: arguments,
     );
   }
 
   Future<T?> pushAndRemoveUntil<T extends Object?>({
     required Route<T> newRoute,
-    required String routeName,
-    Object? parameters,
+    required String routeName, 
   }) {
-    return navigator.pushAndRemoveUntil(
+    return navigator.pushAndRemoveUntil<T>(
       newRoute,
-      ModalRoute.withName(routeName),
+      ModalRoute.withName(routeName), 
+      
     );
   }
 
   Future<T?> pushNamedAndRemoveUntil<T extends Object?>({
     required String routeName,
-    required dynamic parameters,
+    required String removeRouteName,
+      Object? arguments,
     bool rootNavigator = false,
   }) {
-    return navigator.pushNamedAndRemoveUntil(
+    return navigator.pushNamedAndRemoveUntil<T>(
       routeName,
-      ModalRoute.withName(routeName),
+      ModalRoute.withName(removeRouteName),
+      arguments: arguments,
     );
   }
 
   Future<T?> pushReplacementNamed<T extends Object?, TO extends Object?>({
     required String routeName,
-    Object? parameters,
+    Object? arguments,
     TO? result,
   }) {
     return navigator.pushReplacementNamed<T, TO>(
       routeName,
       result: result,
-      arguments: parameters,
+      arguments: arguments,
     );
   }
 

@@ -47,18 +47,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: route.toRoutes(),
-      initialRoute: "/",
-      onGenerateInitialRoutes: route.toOnGenerateInitialRoutes,
-      onUnknownRoute: route.toOnUnknownRoute,
-      onGenerateRoute: route.toOnGenerateRoute,
+    return route.toMaterialApp( 
     );
   }
 
   final RouteGeneralLibFlutter route = RouteGeneralLibFlutter(
     onUnknownRoute: (context, routeData) {
-       return const HomePage();
+      return const HomePage();
     },
     onRoute: () {
       return {
