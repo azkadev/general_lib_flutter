@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 /* <!-- START LICENSE -->
 
 
@@ -35,6 +37,8 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:general_lib_flutter/extension/build_context.dart';
 
 /// tt
 typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(BuildContext context, T statefulWidget);
@@ -92,5 +96,17 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> 
         }
       }
     });
+  }
+
+  Orientation extension_general_lib_flutter_orientation() {
+    return context.orientation;
+  }
+}
+
+extension StateGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<T extends StatelessWidget> on T {
+  Orientation extension_general_lib_flutter_orientation({
+    required BuildContext context,
+  }) {
+    return context.orientation;
   }
 }

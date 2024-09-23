@@ -37,5 +37,4 @@ export "general_lib_flutter_core.dart";
 export "core/core.dart";
 export "extension/extension.dart";
 export "widget/widget.dart";
-
-export "route/route.dart";
+ export "route/route.dart";

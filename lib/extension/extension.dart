@@ -41,6 +41,7 @@ export "scroll_controller.dart";
 export "tab_controller.dart";
 export "text_editing_controller.dart";
 
+export "box_contstraints.dart";
 export "size.dart";
 export "state.dart";
 export "alignment_geometry.dart";
