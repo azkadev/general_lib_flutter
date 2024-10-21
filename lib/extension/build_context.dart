@@ -50,8 +50,7 @@ extension BuildContextExtension<T> on BuildContext {
   }) {
     return Navigator.of(this, rootNavigator: rootNavigator);
   }
- 
-  
+
   Router<A> router<A extends Object?>() {
     return Router.of<A>(this);
   }
@@ -352,6 +351,68 @@ extension BuildContextExtension<T> on BuildContext {
           ),
         );
       },
+    );
+  }
+
+  BoxDecoration extensionGeneralLibFlutterBoxDecoration({
+    required bool isUseBorderAll,
+    required bool isUseBoxShadow,
+  }) {
+    return BoxDecoration(
+      border: isUseBorderAll ? extensionGeneralLibFlutterBorderAll() : null,
+      boxShadow: isUseBoxShadow ? extensionGeneralLibFlutterBoxShadows() : null,
+    );
+  }
+
+  Border extensionGeneralLibFlutterBorderAll() {
+    return Border.all(
+      color: theme.indicatorColor,
+    );
+  }
+
+  List<BoxShadow> extensionGeneralLibFlutterBoxShadows() {
+    return [
+      BoxShadow(
+        color: theme.shadowColor.withAlpha(110),
+        spreadRadius: 2.5,
+        blurRadius: 3,
+        offset: const Offset(0, 0), // changes position of shadow
+      ),
+    ];
+  }
+
+  List<Shadow> extensionGeneralLibFlutterShadows() {
+    return [
+      BoxShadow(
+        color: theme.shadowColor.withAlpha(110),
+        spreadRadius: 1,
+        blurRadius: 4,
+        offset: const Offset(0, 3), // changes position of shadow
+      ),
+    ];
+  }
+
+  Size extensionGeneralLibFlutterSizePhotoLarge() {
+    final size_procces = (height + width) * .2;
+    return Size(
+      size_procces,
+      size_procces,
+    );
+  }
+
+  Size extensionGeneralLibFlutterSizePhotoMedium() {
+    final size_procces = (height + width) * .1;
+    return Size(
+      size_procces,
+      size_procces,
+    );
+  }
+
+  Size extensionGeneralLibFlutterSizePhotoSmall() {
+    final size_procces = (height + width) * .025;
+    return Size(
+      size_procces,
+      size_procces,
     );
   }
 }

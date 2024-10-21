@@ -102,6 +102,11 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> 
     return context.orientation;
   }
 }
+ 
+typedef HandleFunctionGeneralLibFlutter<T extends StatefulWidget> = void Function({
+    required OnHandleFunctionStateFullWidget<T> onFunction,
+    OnHandleErrorStateFullWidget<T>? onError,
+});
 
 extension StateGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<T extends StatelessWidget> on T {
   Orientation extension_general_lib_flutter_orientation({

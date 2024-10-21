@@ -1,10 +1,13 @@
 // ignore_for_file: empty_catches, unnecessary_brace_in_string_interps
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
+import 'package:general_lib_flutter/extension/connection_state.dart';
 
-typedef RouteWidgetBuilderGeneralLibFlutter = Widget Function(BuildContext context, RouteDataGeneralLibFlutter routeData);
+typedef RouteWidgetBuilderGeneralLibFlutter<T> = T Function(BuildContext context, RouteDataGeneralLibFlutter routeDataGeneralLibFlutter);
+
+typedef RouteMapGeneralLibFlutter = Map<String, RouteWidgetBuilderGeneralLibFlutter<dynamic>>;
 
 class RouteDataGeneralLibFlutter {
   final String routeName;
@@ -37,6 +40,17 @@ class RouteDataGeneralLibFlutter {
     return onBuilder();
   }
 
+  static RouteDataGeneralLibFlutter auto({
+    required BuildContext context,
+    required RouteSettings settings,
+  }) {
+    return RouteDataGeneralLibFlutter(
+      routeName: settings.name ?? "",
+      arguments: settings.arguments,
+      context: context,
+    );
+  }
+
   static RouteDataGeneralLibFlutter? maybeOf(BuildContext context) {
     final modal = ModalRoute.of(context);
     if (modal == null) {
@@ -63,150 +77,70 @@ class RouteDataGeneralLibFlutter {
   }
 }
 
-typedef RouteMapGeneralLibFlutter = Map<String, RouteWidgetBuilderGeneralLibFlutter>;
-
 class RouteGeneralLibFlutter {
-  // final PageStorageKey<String> pageStorageKey;
-  // final PageStorageBucket pageStorageBucket;
-  final RouteWidgetBuilderGeneralLibFlutter onUnknownRoute;
-  final RouteMapGeneralLibFlutter Function() onRoute;
+  final RouteWidgetBuilderGeneralLibFlutter<dynamic> onNotFoundRoute;
+  final RouteWidgetBuilderGeneralLibFlutter<Widget> onErrorRoute;
+  final RouteMapGeneralLibFlutter routers = {};
+
   RouteGeneralLibFlutter({
-    required this.onUnknownRoute,
-    required this.onRoute,
+    required this.onErrorRoute,
+    required this.onNotFoundRoute,
   });
 
-  Widget _build({
-    required Widget child,
+  void all(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+    routers[path] = routeWidgetBuilderGeneralLibFlutter;
+  }
+
+  Widget anyDataToWidget({
+    required dynamic data,
+    required BuildContext context,
   }) {
-    return child;
-  }
-
-  RouteMapGeneralLibFlutter get _route {
-    return onRoute();
-  }
-
-  String parsePattern(String path) {
-    String getPattern = "";
-    if (path == "/") {
-      getPattern = "^${path}\$";
-    } else {
-      if (!RegExp(r"^(/)").hasMatch(path)) {
-        getPattern = "^/${path}";
-      } else {
-        getPattern = path;
-      }
+    if (data is Widget) {
+      return data;
     }
-    return getPattern;
-  }
-
-  List<Route<dynamic>> toOnGenerateInitialRoutes(String initialRoute) {
-    if (initialRoute == "/") {
-      return [
-        toRoute(
-          RouteSettings(
-            name: initialRoute,
-          ),
-        ),
-      ];
+    if (data is Future) {
+      return FutureBuilder(
+        future: data,
+        builder: (context, snapshot) {
+          final snapshotData = snapshot.data;
+          final isLoading = snapshot.connectionState.isLoading;
+          if (isLoading) {
+            return const CircularProgressIndicator();
+          }
+          return anyDataToWidget(data: snapshotData, context: context);
+        },
+      );
     }
-    return [
-      toRoute(
-        const RouteSettings(
-          name: "/",
-        ),
-      ),
-      toRoute(
-        RouteSettings(
-          name: initialRoute,
-        ),
-      ),
-    ];
+    throw ErrorDescription("Data Not Widget Type");
   }
 
-  Route<T> toOnGenerateRoute<T>(RouteSettings settings) {
-    return toRoute(settings);
-  }
-
-  Route<T> toOnUnknownRoute<T>(RouteSettings settings) {
-    return toRoute(settings);
-  }
-
-  Route<T> toRoute<T>(RouteSettings settings) {
-    final routeName = settings.name ?? "";
-    if (routeName.isNotEmpty) {
-      for (final element in _route.entries) {
-        if (RegExp(parsePattern(element.key), caseSensitive: false).hasMatch(routeName)) {
-          return MaterialPageRoute(
-            settings: settings,
-            builder: (context) {
-              return _build(
-                child: element.value(
-                  context,
-                  RouteDataGeneralLibFlutter(
-                    routeName: settings.name ?? element.key,
-                    arguments: settings.arguments,
-                    context: context,
-                  ),
-                ),
-              );
-            },
-          );
-        }
-      }
-    }
+  Route<T> route<T>(RouteSettings settings) {
     return MaterialPageRoute(
       settings: settings,
       builder: (context) {
-        return _build(
-          child: onUnknownRoute(
-            context,
-            RouteDataGeneralLibFlutter(
-              routeName: settings.name ?? "",
-              arguments: settings.arguments,
-              context: context,
-            ),
-          ),
-        );
+        final routeDataGeneralLibFlutter = RouteDataGeneralLibFlutter.auto(context: context, settings: settings);
+        try {
+          for (final routeMapGeneralLibFlutter in routers.entries) {
+            if (routeMapGeneralLibFlutter.key.toLowerCase() == routeDataGeneralLibFlutter.path.toLowerCase()) {
+              final child = routeMapGeneralLibFlutter.value(context, routeDataGeneralLibFlutter);
+              if (child != null) {
+                return anyDataToWidget(data: child, context: context);
+              }
+            }
+          }
+          return anyDataToWidget(data: onNotFoundRoute(context, routeDataGeneralLibFlutter), context: context);
+        } catch (e) {
+          return onErrorRoute(context, routeDataGeneralLibFlutter);
+        }
       },
     );
-  }
-
-  Map<String, WidgetBuilder> toRoutes({
-    Map<String, WidgetBuilder>? otherRoutes,
-  }) {
-    final Map<String, WidgetBuilder> result = {};
-    for (final element in _route.entries) {
-      result[element.key] = (context) {
-        final RouteSettings routeSettings = () {
-          try {
-            final ModalRoute? modal = ModalRoute.of(context);
-            if (modal != null) {
-              return modal.settings;
-            }
-          } catch (e) {}
-          return RouteSettings(name: element.key);
-        }();
-        return _build(
-          child: element.value(
-            context,
-            RouteDataGeneralLibFlutter(
-              routeName: routeSettings.name ?? element.key,
-              arguments: routeSettings.arguments,
-              context: context,
-            ),
-          ),
-        );
-      };
-    }
-    result.addAll(otherRoutes ?? {});
-    return result;
   }
 
   MaterialApp toMaterialApp({
     Key? key,
     GlobalKey<NavigatorState>? navigatorKey,
     GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
-    Widget? home, 
+    Widget? home,
     String initialRoute = "/",
     bool Function(NavigationNotification navigationNotification)? onNavigationNotification,
     List<NavigatorObserver> navigatorObservers = const <NavigatorObserver>[],
@@ -240,12 +174,8 @@ class RouteGeneralLibFlutter {
     AnimationStyle? themeAnimationStyle,
   }) {
     return MaterialApp(
-      routes: toRoutes(),
       initialRoute: initialRoute,
-      onGenerateInitialRoutes: toOnGenerateInitialRoutes,
-      onUnknownRoute: toOnUnknownRoute,
-      onGenerateRoute: toOnGenerateRoute,
-
+      onUnknownRoute: route,
       key: key,
       navigatorKey: navigatorKey,
       scaffoldMessengerKey: scaffoldMessengerKey,
@@ -281,7 +211,6 @@ class RouteGeneralLibFlutter {
       locale: locale,
       color: color,
       builder: builder,
-      
     );
   }
 }
@@ -321,19 +250,18 @@ class RouterGeneralLibFlutter {
 
   Future<T?> pushAndRemoveUntil<T extends Object?>({
     required Route<T> newRoute,
-    required String routeName, 
+    required String routeName,
   }) {
     return navigator.pushAndRemoveUntil<T>(
       newRoute,
-      ModalRoute.withName(routeName), 
-      
+      ModalRoute.withName(routeName),
     );
   }
 
   Future<T?> pushNamedAndRemoveUntil<T extends Object?>({
     required String routeName,
     required String removeRouteName,
-      Object? arguments,
+    Object? arguments,
     bool rootNavigator = false,
   }) {
     return navigator.pushNamedAndRemoveUntil<T>(
