@@ -87,8 +87,34 @@ class RouteGeneralLibFlutter {
     required this.onNotFoundRoute,
   });
 
+  String parsePattern(String path) {
+    String getPattern = "";
+    if (path == "/") {
+      getPattern = "^${path}\$";
+    } else {
+      if (!RegExp(r"^(/)").hasMatch(path)) {
+        getPattern = "^/${path}";
+      } else {
+        getPattern = path;
+      }
+    }
+    return getPattern;
+  }
+
   void all(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
     routers[path] = routeWidgetBuilderGeneralLibFlutter;
+  }
+
+  void poast(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+    all(path, routeWidgetBuilderGeneralLibFlutter);
+  }
+
+  void get(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+    all(path, routeWidgetBuilderGeneralLibFlutter);
+  }
+  
+  void head(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+    all(path, routeWidgetBuilderGeneralLibFlutter);
   }
 
   Widget anyDataToWidget({
