@@ -116,3 +116,11 @@ void assertSync({
     return true;
   }());
 }
+
+mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
+  final GlobalKey appBarGlobalKey = GlobalKey();
+  
+  bool isLoading = false;
+
+  Future<void> refresh();
+}
