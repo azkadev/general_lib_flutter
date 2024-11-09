@@ -119,6 +119,8 @@ void assertSync({
 
 mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
   final GlobalKey appBarGlobalKey = GlobalKey();
+  final GlobalKey bottomBarGlobalKey = GlobalKey();
+  final GlobalKey floatingBarGlobalKey = GlobalKey();
   
   bool isLoading = false;
 

@@ -172,24 +172,33 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
 
   ThemeData lightTheme_default() {
     final ThemeData themeData = ThemeData.light();
+    const colorScheme = ColorScheme.light();
+
     final textTheme = Typography().black;
     return themeData.copyWith(
-      primaryColor: themeData.scaffoldBackgroundColor,
+      primaryColor: const Color.fromARGB(255, 214, 216, 223), /// from vs code tokyo night light theme
       shadowColor: const Color.fromARGB(255, 0, 0, 0).withAlpha(110),
-      textTheme: textTheme.apply(
-        fontFamily: "Poppins",
-        package: "general_lib_assets_flutter",
-      ).copyWith(
-        bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
-          color: Colors.black,
-        ),
-      ),
+      textTheme: textTheme
+          .apply(
+            fontFamily: "Poppins",
+            package: "general_lib_assets_flutter",
+          )
+          .copyWith(
+            bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
+              color: Colors.black,
+            ),
+          ),
       indicatorColor: Colors.black,
       dialogBackgroundColor: Colors.white,
       cardColor: Colors.grey,
-      colorScheme: const ColorScheme.light().copyWith(
+      appBarTheme: themeData.appBarTheme.copyWith(
+        backgroundColor: themeData.scaffoldBackgroundColor,
+        surfaceTintColor: themeData.scaffoldBackgroundColor,
+      ),
+      colorScheme: colorScheme.copyWith(
         primary: Colors.black,
         secondary: Colors.white,
+        surface: const Color.fromARGB(255, 230, 231, 237),/// from vs code tokyo night light theme
       ),
       highlightColor: Colors.indigo,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
@@ -201,24 +210,35 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
 
   ThemeData darkTheme_default() {
     final ThemeData themeData = ThemeData.dark();
+    const colorScheme = ColorScheme.dark();
+
     final textTheme = Typography().white;
+    // const Color.fromARGB(255, 228, 219, 219);
     return themeData.copyWith(
-      primaryColor: const Color.fromARGB(255, 30, 30, 30),
+
+      primaryColor: const Color.fromARGB(255, 22, 22, 30), /// from vs code tokyo night theme
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
       scaffoldBackgroundColor: Colors.black,
-      textTheme: textTheme.apply(
-        fontFamily: "Poppins",
-        package: "general_lib_assets_flutter",
-      ).copyWith(
-        bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
-          color: Colors.white,
-        ),
-      ),
+      textTheme: textTheme
+          .apply(
+            fontFamily: "Poppins",
+            package: "general_lib_assets_flutter",
+          )
+          .copyWith(
+            bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
+              color: Colors.white,
+            ),
+          ),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
-      colorScheme: const ColorScheme.dark().copyWith(
+      appBarTheme: themeData.appBarTheme.copyWith(
+        backgroundColor: themeData.scaffoldBackgroundColor,
+        surfaceTintColor: themeData.scaffoldBackgroundColor,
+      ),
+      colorScheme: colorScheme.copyWith(
         primary: const Color.fromARGB(255, 64, 64, 64),
+        surface: const Color.fromARGB(255, 26, 27, 38),/// from vs code tokyo night theme
       ),
       highlightColor: Colors.cyan,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
