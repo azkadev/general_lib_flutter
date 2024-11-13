@@ -180,8 +180,8 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       dialogBackgroundColor: Colors.white,
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
-        backgroundColor: themeData.scaffoldBackgroundColor,
-        surfaceTintColor: themeData.scaffoldBackgroundColor,
+        backgroundColor: const Color.fromARGB(255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
+        surfaceTintColor: const Color.fromARGB(255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
       ),
       colorScheme: colorScheme.copyWith(
         primary: Colors.black,
@@ -195,6 +195,7 @@ class GeneralLibFlutterApp extends ChangeNotifier {
         cursorColor: Colors.black,
         selectionColor: Colors.black.withOpacity(0.4),
       ),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 230, 231, 237),
     );
   }
 
@@ -209,26 +210,18 @@ class GeneralLibFlutterApp extends ChangeNotifier {
 
       /// from vs code tokyo night theme
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
-      scaffoldBackgroundColor: Colors.black,
-      textTheme: textTheme
-          .apply(
-            fontFamily: "Poppins",
-            package: "general_lib_assets_flutter",
-          )
-          .copyWith(
-            bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
-              color: Colors.white,
-            ),
-          ),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 26, 27, 38), // old Colors.black,
+
+      textTheme: textTheme.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter").copyWith(bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(color: Colors.white)),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
-      appBarTheme: themeData.appBarTheme.copyWith(
-        backgroundColor: themeData.scaffoldBackgroundColor,
-        surfaceTintColor: themeData.scaffoldBackgroundColor,
+      appBarTheme: themeData.appBarTheme.copyWith( 
+        backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+        surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
       ),
       colorScheme: colorScheme.copyWith(
-        primary: const Color.fromARGB(255, 64, 64, 64),
+        primary: Colors.white, // old const Color.fromARGB(255, 64, 64, 64),
         surface: const Color.fromARGB(255, 26, 27, 38),
 
         /// from vs code tokyo night theme
