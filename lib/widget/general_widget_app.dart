@@ -151,32 +151,20 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       onSet();
     }
   }
-}
 
-class GeneralLibFlutterAppMain extends StatelessWidget {
-  final GeneralLibFlutterApp generalLibFlutterApp;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
-  final Widget? child;
-  final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
+  void update() {
+    notifyListeners();
+  }
 
-  const GeneralLibFlutterAppMain({
-    super.key,
-    required this.generalLibFlutterApp,
-    this.lightTheme,
-    this.darkTheme,
-    // required this.theme_notifier,
-    required this.builder,
-    this.child,
-  });
-
-  ThemeData lightTheme_default() {
+  static ThemeData lightTheme_default() {
     final ThemeData themeData = ThemeData.light();
     const colorScheme = ColorScheme.light();
 
     final textTheme = Typography().black;
     return themeData.copyWith(
-      primaryColor: const Color.fromARGB(255, 214, 216, 223), /// from vs code tokyo night light theme
+      primaryColor: const Color.fromARGB(255, 214, 216, 223),
+
+      /// from vs code tokyo night light theme
       shadowColor: const Color.fromARGB(255, 0, 0, 0).withAlpha(110),
       textTheme: textTheme
           .apply(
@@ -198,7 +186,9 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       colorScheme: colorScheme.copyWith(
         primary: Colors.black,
         secondary: Colors.white,
-        surface: const Color.fromARGB(255, 230, 231, 237),/// from vs code tokyo night light theme
+        surface: const Color.fromARGB(255, 230, 231, 237),
+
+        /// from vs code tokyo night light theme
       ),
       highlightColor: Colors.indigo,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
@@ -208,15 +198,16 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
     );
   }
 
-  ThemeData darkTheme_default() {
+  static ThemeData darkTheme_default() {
     final ThemeData themeData = ThemeData.dark();
     const colorScheme = ColorScheme.dark();
 
     final textTheme = Typography().white;
     // const Color.fromARGB(255, 228, 219, 219);
     return themeData.copyWith(
+      primaryColor: const Color.fromARGB(255, 22, 22, 30),
 
-      primaryColor: const Color.fromARGB(255, 22, 22, 30), /// from vs code tokyo night theme
+      /// from vs code tokyo night theme
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
       scaffoldBackgroundColor: Colors.black,
       textTheme: textTheme
@@ -238,7 +229,9 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       ),
       colorScheme: colorScheme.copyWith(
         primary: const Color.fromARGB(255, 64, 64, 64),
-        surface: const Color.fromARGB(255, 26, 27, 38),/// from vs code tokyo night theme
+        surface: const Color.fromARGB(255, 26, 27, 38),
+
+        /// from vs code tokyo night theme
       ),
       highlightColor: Colors.cyan,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
@@ -247,6 +240,32 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       ),
     );
   }
+}
+
+class GeneralLibFlutterAppMain extends StatelessWidget {
+  final GeneralLibFlutterApp generalLibFlutterApp;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
+  final Widget? child;
+  final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
+
+  const GeneralLibFlutterAppMain({
+    super.key,
+    required this.generalLibFlutterApp,
+    this.lightTheme,
+    this.darkTheme,
+    // required this.theme_notifier,
+    required this.builder,
+    this.child,
+  });
+
+  ThemeData lightTheme_default() {
+    return GeneralLibFlutterApp.lightTheme_default();
+  }
+
+  ThemeData darkTheme_default() {
+    return GeneralLibFlutterApp.darkTheme_default();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,10 +273,12 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       listenable: generalLibFlutterApp,
       child: child,
       builder: (context, child) {
+        final lightTheme = this.lightTheme;
+        final darkTheme = this.darkTheme;
         return builder(
           generalLibFlutterApp.themeMode,
-          (lightTheme != null) ? lightTheme!(context, lightTheme_default()) : lightTheme_default(),
-          (darkTheme != null) ? darkTheme!(context, darkTheme_default()) : darkTheme_default(),
+          (lightTheme != null) ? lightTheme(context, lightTheme_default()) : lightTheme_default(),
+          (darkTheme != null) ? darkTheme(context, darkTheme_default()) : darkTheme_default(),
           child,
         );
       },
