@@ -14,12 +14,24 @@ class RouteDataGeneralLibFlutter {
   final Object? arguments;
   final BuildContext context;
   // final PageStorageBucket pageStorageBucket;
-  RouteDataGeneralLibFlutter({
+  const RouteDataGeneralLibFlutter({
     required this.routeName,
     required this.arguments,
     required this.context,
     // required this.pageStorageBucket,
   });
+
+  RouteDataGeneralLibFlutter copyWith({
+    String? routeName,
+     Object? arguments,
+     BuildContext? context,
+  }) {
+    return RouteDataGeneralLibFlutter(
+      routeName: routeName ?? this.routeName,
+      arguments: arguments ?? this.arguments,
+      context: context ?? this.context,
+    );
+  }
 
   String get path {
     return routeName;
@@ -112,7 +124,7 @@ class RouteGeneralLibFlutter {
   void get(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
     all(path, routeWidgetBuilderGeneralLibFlutter);
   }
-  
+
   void head(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
     all(path, routeWidgetBuilderGeneralLibFlutter);
   }

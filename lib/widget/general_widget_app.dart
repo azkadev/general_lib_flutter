@@ -96,35 +96,50 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     required ThemeMode theme_mode,
     required Brightness Function() onChangeBrightness,
   }) {
-    if (theme_mode == ThemeMode.dark) {
-      SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.dark,
-        ),
-      );
-    } else if (theme_mode == ThemeMode.light) {
-      SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.light,
-        ),
-      );
-    } else if (theme_mode == ThemeMode.system) {
-      Brightness brightness = onChangeBrightness();
-      // brightness ;
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: (brightness == Brightness.light) ? Brightness.dark : Brightness.light,
-          statusBarBrightness: (brightness == Brightness.light) ? Brightness.light : Brightness.dark,
-        ),
-      );
-    }
+    setSystemUIOverlayStyle(
+      theme_mode: theme_mode,
+      onChangeBrightness: onChangeBrightness,
+    );
 
     notifyListeners();
+  }
+
+  void setSystemUIOverlayStyle({
+    required ThemeMode theme_mode,
+    required Brightness Function() onChangeBrightness,
+  }) {
+    SystemChrome.setSystemUIOverlayStyle(
+      getSystemUiOverlayStyle(
+        themeMode: theme_mode,
+        onChangeBrightness: onChangeBrightness,
+      ),
+    );
+  }
+
+  SystemUiOverlayStyle getSystemUiOverlayStyle({
+    required ThemeMode themeMode,
+    required Brightness Function() onChangeBrightness,
+  }) {
+    if (themeMode == ThemeMode.dark) {
+      return const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      );
+    } else if (themeMode == ThemeMode.light) {
+      return const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      );
+    } else {
+      final Brightness brightness = onChangeBrightness();
+      return SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: (brightness == Brightness.light) ? Brightness.dark : Brightness.light,
+        statusBarBrightness: (brightness == Brightness.light) ? Brightness.light : Brightness.dark,
+      );
+    }
   }
 
   ThemeMode autoChangeTheme({required Brightness Function() onChangeBrightness}) {
@@ -216,10 +231,10 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
-      appBarTheme: themeData.appBarTheme.copyWith( 
-        backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
-        surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
-      ),
+      appBarTheme: themeData.appBarTheme.copyWith(
+          backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+          surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+          systemOverlayStyle: SystemUiOverlayStyle()),
       colorScheme: colorScheme.copyWith(
         primary: Colors.white, // old const Color.fromARGB(255, 64, 64, 64),
         surface: const Color.fromARGB(255, 26, 27, 38),
@@ -240,11 +255,13 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
   final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
   final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
   final Widget? child;
+  final bool isAutoInitialized;
   final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
 
   const GeneralLibFlutterAppMain({
     super.key,
     required this.generalLibFlutterApp,
+    this.isAutoInitialized = true,
     this.lightTheme,
     this.darkTheme,
     // required this.theme_notifier,
@@ -268,6 +285,13 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
       builder: (context, child) {
         final lightTheme = this.lightTheme;
         final darkTheme = this.darkTheme;
+        if (isAutoInitialized) {
+          generalLibFlutterApp.initState(
+            context: context,
+            themeMode: generalLibFlutterApp.themeMode,
+            onSet: () {},
+          );
+        }
         return builder(
           generalLibFlutterApp.themeMode,
           (lightTheme != null) ? lightTheme(context, lightTheme_default()) : lightTheme_default(),
