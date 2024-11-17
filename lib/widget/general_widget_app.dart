@@ -232,9 +232,10 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
-          backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
-          surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
-          systemOverlayStyle: SystemUiOverlayStyle()),
+        backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+        surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+
+      ),
       colorScheme: colorScheme.copyWith(
         primary: Colors.white, // old const Color.fromARGB(255, 64, 64, 64),
         surface: const Color.fromARGB(255, 26, 27, 38),
