@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
 import 'package:general_lib_flutter/extension/connection_state.dart';
 
-typedef RouteWidgetBuilderGeneralLibFlutter<T> = T Function(BuildContext context, RouteDataGeneralLibFlutter routeDataGeneralLibFlutter);
+typedef RouteWidgetBuilderGeneralLibFlutter<T> = T Function(
+    BuildContext context,
+    RouteDataGeneralLibFlutter routeDataGeneralLibFlutter);
 
-typedef RouteMapGeneralLibFlutter = Map<String, RouteWidgetBuilderGeneralLibFlutter<dynamic>>;
+typedef RouteMapGeneralLibFlutter
+    = Map<String, RouteWidgetBuilderGeneralLibFlutter<dynamic>>;
 
 class RouteDataGeneralLibFlutter {
   final String routeName;
@@ -23,8 +26,8 @@ class RouteDataGeneralLibFlutter {
 
   RouteDataGeneralLibFlutter copyWith({
     String? routeName,
-     Object? arguments,
-     BuildContext? context,
+    Object? arguments,
+    BuildContext? context,
   }) {
     return RouteDataGeneralLibFlutter(
       routeName: routeName ?? this.routeName,
@@ -113,19 +116,31 @@ class RouteGeneralLibFlutter {
     return getPattern;
   }
 
-  void all(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+  void all(
+      String path,
+      RouteWidgetBuilderGeneralLibFlutter<dynamic>
+          routeWidgetBuilderGeneralLibFlutter) {
     routers[path] = routeWidgetBuilderGeneralLibFlutter;
   }
 
-  void poast(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+  void poast(
+      String path,
+      RouteWidgetBuilderGeneralLibFlutter<dynamic>
+          routeWidgetBuilderGeneralLibFlutter) {
     all(path, routeWidgetBuilderGeneralLibFlutter);
   }
 
-  void get(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+  void get(
+      String path,
+      RouteWidgetBuilderGeneralLibFlutter<dynamic>
+          routeWidgetBuilderGeneralLibFlutter) {
     all(path, routeWidgetBuilderGeneralLibFlutter);
   }
 
-  void head(String path, RouteWidgetBuilderGeneralLibFlutter<dynamic> routeWidgetBuilderGeneralLibFlutter) {
+  void head(
+      String path,
+      RouteWidgetBuilderGeneralLibFlutter<dynamic>
+          routeWidgetBuilderGeneralLibFlutter) {
     all(path, routeWidgetBuilderGeneralLibFlutter);
   }
 
@@ -156,17 +171,22 @@ class RouteGeneralLibFlutter {
     return MaterialPageRoute(
       settings: settings,
       builder: (context) {
-        final routeDataGeneralLibFlutter = RouteDataGeneralLibFlutter.auto(context: context, settings: settings);
+        final routeDataGeneralLibFlutter = RouteDataGeneralLibFlutter.auto(
+            context: context, settings: settings);
         try {
           for (final routeMapGeneralLibFlutter in routers.entries) {
-            if (routeMapGeneralLibFlutter.key.toLowerCase() == routeDataGeneralLibFlutter.path.toLowerCase()) {
-              final child = routeMapGeneralLibFlutter.value(context, routeDataGeneralLibFlutter);
+            if (routeMapGeneralLibFlutter.key.toLowerCase() ==
+                routeDataGeneralLibFlutter.path.toLowerCase()) {
+              final child = routeMapGeneralLibFlutter.value(
+                  context, routeDataGeneralLibFlutter);
               if (child != null) {
                 return anyDataToWidget(data: child, context: context);
               }
             }
           }
-          return anyDataToWidget(data: onNotFoundRoute(context, routeDataGeneralLibFlutter), context: context);
+          return anyDataToWidget(
+              data: onNotFoundRoute(context, routeDataGeneralLibFlutter),
+              context: context);
         } catch (e) {
           return onErrorRoute(context, routeDataGeneralLibFlutter);
         }
@@ -180,7 +200,8 @@ class RouteGeneralLibFlutter {
     GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
     Widget? home,
     String initialRoute = "/",
-    bool Function(NavigationNotification navigationNotification)? onNavigationNotification,
+    bool Function(NavigationNotification navigationNotification)?
+        onNavigationNotification,
     List<NavigatorObserver> navigatorObservers = const <NavigatorObserver>[],
     Widget Function(BuildContext context, Widget? widget)? builder,
     String title = '',
@@ -195,8 +216,10 @@ class RouteGeneralLibFlutter {
     Curve themeAnimationCurve = Curves.linear,
     Locale? locale,
     Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
-    Locale? Function(List<Locale>? locales, Iterable<Locale> supportedLocales)? localeListResolutionCallback,
-    Locale? Function(Locale? locale, Iterable<Locale> supportedLocales)? localeResolutionCallback,
+    Locale? Function(List<Locale>? locales, Iterable<Locale> supportedLocales)?
+        localeListResolutionCallback,
+    Locale? Function(Locale? locale, Iterable<Locale> supportedLocales)?
+        localeResolutionCallback,
     Iterable<Locale> supportedLocales = const <Locale>[Locale('en', 'US')],
     bool debugShowMaterialGrid = false,
     bool showPerformanceOverlay = false,
@@ -265,7 +288,8 @@ class RouterGeneralLibFlutter {
     BuildContext context, {
     bool rootNavigator = false,
   }) {
-    return RouterGeneralLibFlutter(context: context, rootNavigator: rootNavigator);
+    return RouterGeneralLibFlutter(
+        context: context, rootNavigator: rootNavigator);
   }
 
   NavigatorState get navigator {
@@ -325,8 +349,12 @@ class RouterGeneralLibFlutter {
     navigator.activate();
   }
 
-  Future<T?> popAndPushNamed<T extends Object?, TO extends Object?>(String routeName, {TO? result, Object? arguments}) {
-    return navigator.popAndPushNamed<T, TO>(routeName, result: result, arguments: arguments);
+  Future<T?> popAndPushNamed<T extends Object?, TO extends Object?>(
+      String routeName,
+      {TO? result,
+      Object? arguments}) {
+    return navigator.popAndPushNamed<T, TO>(routeName,
+        result: result, arguments: arguments);
   }
 }
 
@@ -340,7 +368,8 @@ extension RouteGeneralLibFlutterBuildContextExtension<T> on BuildContext {
   }
 }
 
-extension RouteGeneralLibFlutterGeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> {
+extension RouteGeneralLibFlutterGeneralLibFlutterStateExtension<
+    T extends StatefulWidget> on State<T> {
   RouterGeneralLibFlutter routerGeneralLibFlutter() {
     return RouterGeneralLibFlutter.of(context);
   }
@@ -350,7 +379,8 @@ extension RouteGeneralLibFlutterGeneralLibFlutterStateExtension<T extends Statef
   }
 }
 
-extension RouteGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<T extends StatelessWidget> on T {
+extension RouteGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<
+    T extends StatelessWidget> on T {
   RouterGeneralLibFlutter routerGeneralLibFlutter({
     required BuildContext context,
   }) {

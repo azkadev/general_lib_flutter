@@ -33,7 +33,6 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 extension ScrollControllerExtension on ScrollController {
   void onScrolling(void Function(bool isScrolling) callback) {
@@ -45,7 +44,8 @@ extension ScrollControllerExtension on ScrollController {
     double alignment = 0.0,
     Duration duration = Durations.short4,
     Curve curve = Curves.easeOut,
-    ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit,
+    ScrollPositionAlignmentPolicy alignmentPolicy =
+        ScrollPositionAlignmentPolicy.explicit,
   }) async {
     final BuildContext? context = globalKey.currentContext;
     if (context == null) {
@@ -62,7 +62,6 @@ extension ScrollControllerExtension on ScrollController {
   }
 
   Future<void> scrollToMinimum({
-    
     Duration duration = Durations.short4,
     Curve curve = Curves.easeOut,
   }) async {
@@ -72,7 +71,8 @@ extension ScrollControllerExtension on ScrollController {
       curve: curve,
     );
   }
-  Future<void> scrollToMaximum({ 
+
+  Future<void> scrollToMaximum({
     Duration duration = Durations.short4,
     Curve curve = Curves.easeOut,
   }) async {
@@ -82,7 +82,6 @@ extension ScrollControllerExtension on ScrollController {
       curve: curve,
     );
   }
-
 }
 
 extension ScrollPositionExtension on ScrollPosition {

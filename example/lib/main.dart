@@ -47,23 +47,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return route.toMaterialApp( 
-    );
+    return route.toMaterialApp();
   }
 
   final RouteGeneralLibFlutter route = RouteGeneralLibFlutter(
-    onUnknownRoute: (context, routeData) {
+    onNotFoundRoute: (context, routeData) {
       return const HomePage();
     },
-    onRoute: () {
-      return {
-        "/": (context, data) {
-          return const HomePage();
-        },
-        "/sign": (context, data) {
-          return const SignPage();
-        },
-      };
+    onErrorRoute: (context, routeData) {
+      return const HomePage();
     },
   );
 }
@@ -81,7 +73,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: const Text("Home Page"),
       ),
       body: Center(
         child: Column(
@@ -99,7 +91,9 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // context.pageStorageBucket.writeState(context, "slewlpalsp", identifier: "args");
-          context.navigator().pushNamed("/sign/sasa/dalplpe/fepltpee/epl", arguments: "Asa");
+          context
+              .navigator()
+              .pushNamed("/sign/sasa/dalplpe/fepltpee/epl", arguments: "Asa");
           // context.routeGeneralLibFlutterPushNamed(routeName: "/sign", parameters: context);
           // context.navigator().push(
           //   MaterialPageRoute(
@@ -145,7 +139,7 @@ class _SignPageState extends State<SignPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign Page"),
+        title: const Text("Sign Page"),
       ),
     );
   }

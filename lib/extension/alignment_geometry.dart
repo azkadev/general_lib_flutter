@@ -38,10 +38,12 @@ extension ExtensionGeneralLibFLutterOnAlignmentGeometry on AlignmentGeometry {
   CrossAxisAlignment toCrossAxisAlignment({
     CrossAxisAlignment? defaultCrossAxisAlignment,
   }) {
-    if ([Alignment.centerLeft, Alignment.bottomLeft, Alignment.topLeft].contains(this)) {
+    if ([Alignment.centerLeft, Alignment.bottomLeft, Alignment.topLeft]
+        .contains(this)) {
       return CrossAxisAlignment.start;
     }
-    if ([Alignment.centerRight, Alignment.topRight, Alignment.bottomRight].contains(this)) {
+    if ([Alignment.centerRight, Alignment.topRight, Alignment.bottomRight]
+        .contains(this)) {
       return CrossAxisAlignment.end;
     }
     return defaultCrossAxisAlignment ?? CrossAxisAlignment.center;
@@ -50,10 +52,12 @@ extension ExtensionGeneralLibFLutterOnAlignmentGeometry on AlignmentGeometry {
   MainAxisAlignment toMainAxisAlignment({
     MainAxisAlignment? defaultMainAxisAlignment,
   }) {
-    if ([Alignment.centerLeft, Alignment.bottomLeft, Alignment.topLeft].contains(this)) {
+    if ([Alignment.centerLeft, Alignment.bottomLeft, Alignment.topLeft]
+        .contains(this)) {
       return MainAxisAlignment.start;
     }
-    if ([Alignment.centerRight, Alignment.topRight, Alignment.bottomRight].contains(this)) {
+    if ([Alignment.centerRight, Alignment.topRight, Alignment.bottomRight]
+        .contains(this)) {
       return MainAxisAlignment.end;
     }
     return defaultMainAxisAlignment ?? MainAxisAlignment.center;

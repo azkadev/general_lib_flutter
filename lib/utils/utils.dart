@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, empty_catches
 
 import 'dart:convert';
 
@@ -17,7 +17,8 @@ class GeneralLibFlutterUtils {
           final value = element.value;
           if (value is List) {
             for (final valueData in value) {
-              if (RegExp("([.]${extensionName})\$", caseSensitive: false).hasMatch(valueData)) {
+              if (RegExp("([.]${extensionName})\$", caseSensitive: false)
+                  .hasMatch(valueData)) {
                 if (result.contains(valueData) == false) {
                   result.add(valueData);
                 }

@@ -58,7 +58,8 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   void Function() on_initialized = () {};
 
   /// listen attach or detach
-  void Function(bool isAttach, double offset) on_attach_or_detach = (bool isAttach, double offset) {};
+  void Function(bool isAttach, double offset) on_attach_or_detach =
+      (bool isAttach, double offset) {};
 
   /// scroll_controller
   late final ScrollController scroll_controller = ScrollController(
@@ -124,7 +125,9 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
 
   /// wrap page for auto set
   Widget builderWidget({
-    required Widget Function(BuildContext context, PageStorageBucket pageStorageBucket) builder,
+    required Widget Function(
+            BuildContext context, PageStorageBucket pageStorageBucket)
+        builder,
   }) {
     return PageStorage(
       key: page_storage_key,

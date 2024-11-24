@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
 
 /* <!-- START LICENSE -->
 
@@ -41,11 +41,14 @@ import 'package:flutter/widgets.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
 
 /// tt
-typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(BuildContext context, T statefulWidget);
+typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(
+    BuildContext context, T statefulWidget);
 //
-typedef OnHandleErrorStateFullWidget<T> = FutureOr<dynamic> Function(Object error, StackTrace stackTrace, T statefulWidget);
+typedef OnHandleErrorStateFullWidget<T> = FutureOr<dynamic> Function(
+    Object error, StackTrace stackTrace, T statefulWidget);
 
-extension GeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> {
+extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
+    on State<T> {
   void setStateAsync(
     FutureOr<dynamic> Function() fn, {
     void Function(Object e, StackTrace stackTrace)? onError,
@@ -102,13 +105,15 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget> on State<T> 
     return context.orientation;
   }
 }
- 
-typedef HandleFunctionGeneralLibFlutter<T extends StatefulWidget> = void Function({
-    required OnHandleFunctionStateFullWidget<T> onFunction,
-    OnHandleErrorStateFullWidget<T>? onError,
+
+typedef HandleFunctionGeneralLibFlutter<T extends StatefulWidget> = void
+    Function({
+  required OnHandleFunctionStateFullWidget<T> onFunction,
+  OnHandleErrorStateFullWidget<T>? onError,
 });
 
-extension StateGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<T extends StatelessWidget> on T {
+extension StateGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<
+    T extends StatelessWidget> on T {
   Orientation extension_general_lib_flutter_orientation({
     required BuildContext context,
   }) {
