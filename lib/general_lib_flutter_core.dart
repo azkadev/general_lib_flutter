@@ -36,6 +36,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:general_lib_flutter/extension/build_context.dart';
 
 class MyScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -121,7 +122,17 @@ mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
   final GlobalKey appBarGlobalKey = GlobalKey();
   final GlobalKey bottomBarGlobalKey = GlobalKey();
   final GlobalKey floatingBarGlobalKey = GlobalKey();
-  
+
+  bool isCanPop = false;
+  bool _isEnsureInitialized = false;
+  void ensureInitialized() {
+    if (_isEnsureInitialized) {
+      return;
+    }
+    isCanPop = context.navigator().canPop();
+    _isEnsureInitialized = true;
+  }
+
   bool isLoading = false;
 
   Future<void> refresh();
