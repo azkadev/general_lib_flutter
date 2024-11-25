@@ -58,8 +58,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   void Function() on_initialized = () {};
 
   /// listen attach or detach
-  void Function(bool isAttach, double offset) on_attach_or_detach =
-      (bool isAttach, double offset) {};
+  void Function(bool isAttach, double offset) on_attach_or_detach = (bool isAttach, double offset) {};
 
   /// scroll_controller
   late final ScrollController scroll_controller = ScrollController(
@@ -91,6 +90,9 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   @override
   void dispose() {
     scroll_controller.dispose();
+    
+    valueNotifierIsScrolling.dispose();
+
     super.dispose();
   }
 
@@ -98,6 +100,8 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   void update() {
     notifyListeners();
   }
+
+  final ValueNotifier<bool> valueNotifierIsScrolling = ValueNotifier(false);
 
   /// listen scroll
   void onScrolling({
@@ -107,6 +111,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
     scroll_controller.onScrolling((isScrolling) {
       bool is_mounted = onMounted();
       if (is_mounted && is_activate) {
+        valueNotifierIsScrolling.value = isScrolling;
         callback(isScrolling, scroll_controller.offset);
       }
     });
@@ -125,9 +130,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
 
   /// wrap page for auto set
   Widget builderWidget({
-    required Widget Function(
-            BuildContext context, PageStorageBucket pageStorageBucket)
-        builder,
+    required Widget Function(BuildContext context, PageStorageBucket pageStorageBucket) builder,
   }) {
     return PageStorage(
       key: page_storage_key,
