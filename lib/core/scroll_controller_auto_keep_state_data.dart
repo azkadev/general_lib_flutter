@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 /* <!-- START LICENSE -->
 
 
@@ -90,7 +92,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   @override
   void dispose() {
     scroll_controller.dispose();
-    
+
     valueNotifierIsScrolling.dispose();
 
     super.dispose();
@@ -115,6 +117,26 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
         callback(isScrolling, scroll_controller.offset);
       }
     });
+  }
+
+  bool isAtEdge() {
+    try {
+      return scroll_controller.position.atEdge;
+    } catch (e) {}
+    return false;
+  }
+
+  Alignment alignment() {
+    if (isAtEdge()) {
+      try {
+        if (scroll_controller.position.pixels == scroll_controller.position.minScrollExtent) {
+          return Alignment.topCenter;
+        } else if (scroll_controller.position.pixels == scroll_controller.position.maxScrollExtent) {
+          return Alignment.bottomCenter;
+        }
+      } catch (e) {}
+    }
+    return Alignment.center;
   }
 
   /// wrap page for auto set
