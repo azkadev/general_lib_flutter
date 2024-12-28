@@ -60,7 +60,8 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   void Function() on_initialized = () {};
 
   /// listen attach or detach
-  void Function(bool isAttach, double offset) on_attach_or_detach = (bool isAttach, double offset) {};
+  void Function(bool isAttach, double offset) on_attach_or_detach =
+      (bool isAttach, double offset) {};
 
   /// scroll_controller
   late final ScrollController scroll_controller = ScrollController(
@@ -129,9 +130,11 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   Alignment alignment() {
     if (isAtEdge()) {
       try {
-        if (scroll_controller.position.pixels == scroll_controller.position.minScrollExtent) {
+        if (scroll_controller.position.pixels ==
+            scroll_controller.position.minScrollExtent) {
           return Alignment.topCenter;
-        } else if (scroll_controller.position.pixels == scroll_controller.position.maxScrollExtent) {
+        } else if (scroll_controller.position.pixels ==
+            scroll_controller.position.maxScrollExtent) {
           return Alignment.bottomCenter;
         }
       } catch (e) {}
@@ -152,7 +155,9 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
 
   /// wrap page for auto set
   Widget builderWidget({
-    required Widget Function(BuildContext context, PageStorageBucket pageStorageBucket) builder,
+    required Widget Function(
+            BuildContext context, PageStorageBucket pageStorageBucket)
+        builder,
   }) {
     return PageStorage(
       key: page_storage_key,
