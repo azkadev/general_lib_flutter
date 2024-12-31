@@ -44,25 +44,31 @@ import 'package:flutter/material.dart' as material;
 
 import "dart:ui" as ui;
 
+/// general
 extension BuildContextExtension<T> on BuildContext {
+  /// general
   NavigatorState navigator({
     bool rootNavigator = false,
   }) {
     return Navigator.of(this, rootNavigator: rootNavigator);
   }
 
+  /// general
   Router<A> router<A extends Object?>() {
     return Router.of<A>(this);
   }
 
+  /// general
   PageStorageBucket? get pageStorageBucketMaybeOf {
     return PageStorage.maybeOf(this);
   }
 
+  /// general
   PageStorageBucket get pageStorageBucket {
     return PageStorage.of(this);
   }
 
+  /// general
   BoxConstraints boxConstraints({
     double? minWidth,
     double maxWidth = double.infinity,
@@ -77,10 +83,12 @@ extension BuildContextExtension<T> on BuildContext {
     );
   }
 
+  /// general
   MediaQueryData get mediaQueryData {
     return MediaQuery.of(this);
   }
 
+  /// general
   Orientation get orientation {
     return mediaQueryData.orientation;
   }

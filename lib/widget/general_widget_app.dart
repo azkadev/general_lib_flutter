@@ -219,7 +219,9 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       highlightColor: Colors.indigo,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
         cursorColor: Colors.black,
-        selectionColor: Colors.black.withOpacity(0.4),
+        selectionColor: Colors.black.withValues(
+          alpha: 0.4,
+        ),
       ),
       scaffoldBackgroundColor: const Color.fromARGB(255, 230, 231, 237),
     );
@@ -264,7 +266,7 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       highlightColor: Colors.cyan,
       textSelectionTheme: themeData.textSelectionTheme.copyWith(
         cursorColor: Colors.white,
-        selectionColor: Colors.white.withOpacity(0.4),
+        selectionColor: Colors.white.withValues(alpha: 0.4),
       ),
     );
   }

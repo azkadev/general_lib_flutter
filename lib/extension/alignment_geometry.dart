@@ -34,7 +34,9 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
 
+/// general
 extension ExtensionGeneralLibFLutterOnAlignmentGeometry on AlignmentGeometry {
+  /// general
   CrossAxisAlignment toCrossAxisAlignment({
     CrossAxisAlignment? defaultCrossAxisAlignment,
   }) {
@@ -49,6 +51,7 @@ extension ExtensionGeneralLibFLutterOnAlignmentGeometry on AlignmentGeometry {
     return defaultCrossAxisAlignment ?? CrossAxisAlignment.center;
   }
 
+  /// general
   MainAxisAlignment toMainAxisAlignment({
     MainAxisAlignment? defaultMainAxisAlignment,
   }) {
