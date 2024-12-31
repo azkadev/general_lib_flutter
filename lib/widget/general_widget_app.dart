@@ -136,15 +136,21 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       final Brightness brightness = onChangeBrightness();
       return SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: (brightness == Brightness.light) ? Brightness.dark : Brightness.light,
-        statusBarBrightness: (brightness == Brightness.light) ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness: (brightness == Brightness.light)
+            ? Brightness.dark
+            : Brightness.light,
+        statusBarBrightness: (brightness == Brightness.light)
+            ? Brightness.light
+            : Brightness.dark,
       );
     }
   }
 
-  ThemeMode autoChangeTheme({required Brightness Function() onChangeBrightness}) {
+  ThemeMode autoChangeTheme(
+      {required Brightness Function() onChangeBrightness}) {
     ThemeMode theme_mode = autoChangeThemeMode();
-    autoChangeSystemUi(theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
+    autoChangeSystemUi(
+        theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
     notifyListeners();
     return theme_mode;
   }
@@ -187,7 +193,10 @@ class GeneralLibFlutterApp extends ChangeNotifier {
             package: "general_lib_assets_flutter",
           )
           .copyWith(
-            bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(
+            bodySmall: (textTheme.bodySmall ??
+                    themeData.textTheme.bodySmall ??
+                    const TextStyle())
+                .copyWith(
               color: Colors.black,
             ),
           ),
@@ -195,8 +204,10 @@ class GeneralLibFlutterApp extends ChangeNotifier {
       dialogBackgroundColor: Colors.white,
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
-        backgroundColor: const Color.fromARGB(255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
-        surfaceTintColor: const Color.fromARGB(255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
+        backgroundColor: const Color.fromARGB(
+            255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
+        surfaceTintColor: const Color.fromARGB(
+            255, 214, 216, 223), // old themeData.scaffoldBackgroundColor,
       ),
       colorScheme: colorScheme.copyWith(
         primary: Colors.black,
@@ -225,15 +236,24 @@ class GeneralLibFlutterApp extends ChangeNotifier {
 
       /// from vs code tokyo night theme
       shadowColor: const Color.fromARGB(255, 255, 255, 255).withAlpha(110),
-      scaffoldBackgroundColor: const Color.fromARGB(255, 26, 27, 38), // old Colors.black,
+      scaffoldBackgroundColor:
+          const Color.fromARGB(255, 26, 27, 38), // old Colors.black,
 
-      textTheme: textTheme.apply(fontFamily: "Poppins", package: "general_lib_assets_flutter").copyWith(bodySmall: (textTheme.bodySmall ?? themeData.textTheme.bodySmall ?? const TextStyle()).copyWith(color: Colors.white)),
+      textTheme: textTheme
+          .apply(fontFamily: "Poppins", package: "general_lib_assets_flutter")
+          .copyWith(
+              bodySmall: (textTheme.bodySmall ??
+                      themeData.textTheme.bodySmall ??
+                      const TextStyle())
+                  .copyWith(color: Colors.white)),
       indicatorColor: Colors.white,
       dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
-        backgroundColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
-        surfaceTintColor: const Color.fromARGB(255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+        backgroundColor: const Color.fromARGB(
+            255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
+        surfaceTintColor: const Color.fromARGB(
+            255, 22, 22, 30), // old themeData.scaffoldBackgroundColor,
       ),
       colorScheme: colorScheme.copyWith(
         primary: Colors.white, // old const Color.fromARGB(255, 64, 64, 64),
@@ -252,12 +272,15 @@ class GeneralLibFlutterApp extends ChangeNotifier {
 
 class GeneralLibFlutterAppMain extends StatelessWidget {
   final GeneralLibFlutterApp generalLibFlutterApp;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? lightTheme;
-  final ThemeData Function(BuildContext context, ThemeData defaultTheme)? darkTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
+      lightTheme;
+  final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
+      darkTheme;
   final Widget? child;
   final bool isAutoInitialized;
   final bool isCanPop;
-  final Widget Function(ThemeMode themeMode, ThemeData lightTheme, ThemeData darkTheme, Widget? widget) builder;
+  final Widget Function(ThemeMode themeMode, ThemeData lightTheme,
+      ThemeData darkTheme, Widget? widget) builder;
 
   const GeneralLibFlutterAppMain({
     super.key,
@@ -296,8 +319,12 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
         }
         return builder(
           generalLibFlutterApp.themeMode,
-          (lightTheme != null) ? lightTheme(context, lightTheme_default()) : lightTheme_default(),
-          (darkTheme != null) ? darkTheme(context, darkTheme_default()) : darkTheme_default(),
+          (lightTheme != null)
+              ? lightTheme(context, lightTheme_default())
+              : lightTheme_default(),
+          (darkTheme != null)
+              ? darkTheme(context, darkTheme_default())
+              : darkTheme_default(),
           child,
         );
       },
