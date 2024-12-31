@@ -72,6 +72,6 @@ import 'package:general_lib/general_lib.dart';
 
 void main(List<String> args) {
   Directory? directory =
-      Dart.pub.installFromDirectory(directoryPackage: Directory.current);
+      Dart.pub.installFromDirectoryFresh(directoryPackage: Directory.current);
   print(directory);
 }
