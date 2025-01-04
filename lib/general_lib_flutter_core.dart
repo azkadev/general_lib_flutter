@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 /* <!-- START LICENSE -->
 
 
@@ -136,4 +138,38 @@ mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
   bool isLoading = false;
 
   Future<void> refresh();
+
+  Future<void> refreshState({
+    required FutureOr<dynamic> Function() onRefresh,
+    FutureOr<dynamic> Function(Object e, StackTrace stackTrace)? onError,
+    bool isThrowOnError = true,
+  }) async {
+    if (isLoading) {
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+    await Future(() async {
+      try {
+        await onRefresh();
+      } catch (e, stack) {
+        if (isThrowOnError) {
+          rethrow;
+        }
+        // ignore: non_constant_identifier_names
+        final on_error = onError;
+        if (on_error != null) {
+          try {
+            await on_error(e, stack);
+          } catch (e) {}
+          return;
+        }
+      }
+    });
+    setState(() {
+      isLoading = false;
+    });
+  }
 }
