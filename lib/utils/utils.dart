@@ -4,7 +4,9 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+/// GeneralLibraryFlutter
 class GeneralLibFlutterUtils {
+  /// GeneralLibraryFlutter
   static Future<List<String>> getAssetsByExtension({
     required String extensionName,
   }) async {

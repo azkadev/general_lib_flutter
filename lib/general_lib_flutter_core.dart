@@ -40,7 +40,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
 
+/// GeneralLibraryFlutter
 class MyScrollBehavior extends MaterialScrollBehavior {
+  /// GeneralLibraryFlutter
   @override
   Set<PointerDeviceKind> get dragDevices {
     return {
@@ -53,12 +55,17 @@ class MyScrollBehavior extends MaterialScrollBehavior {
   }
 }
 
+/// GeneralLibraryFlutter
 class GeneralLibFlutter {
+  /// GeneralLibraryFlutter
   const GeneralLibFlutter();
+
+  /// GeneralLibraryFlutter
   static void ensureInitialized() {
     WidgetsFlutterBinding.ensureInitialized();
   }
 
+  /// GeneralLibraryFlutter
   static BorderRadius borderRadiusBubbleChatMessage({
     required bool isOutGoing,
     double borderMax = 15,
@@ -102,6 +109,7 @@ class GeneralLibFlutter {
   }
 }
 
+/// GeneralLibraryFlutter
 void assertAsync({
   required FutureOr<dynamic> Function() function,
 }) {
@@ -111,6 +119,7 @@ void assertAsync({
   }());
 }
 
+/// GeneralLibraryFlutter
 void assertSync({
   required dynamic Function() function,
 }) {
@@ -120,13 +129,24 @@ void assertSync({
   }());
 }
 
+/// GeneralLibraryFlutter
 mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
+  /// GeneralLibraryFlutter
   final GlobalKey appBarGlobalKey = GlobalKey();
+
+  /// GeneralLibraryFlutter
   final GlobalKey bottomBarGlobalKey = GlobalKey();
+
+  /// GeneralLibraryFlutter
   final GlobalKey floatingBarGlobalKey = GlobalKey();
 
+  /// GeneralLibraryFlutter
   bool isCanPop = false;
+
+  /// GeneralLibraryFlutter
   bool _isEnsureInitialized = false;
+
+  /// GeneralLibraryFlutter
   void ensureInitialized() {
     if (_isEnsureInitialized) {
       return;
@@ -135,10 +155,13 @@ mixin GeneralLibFlutterStatefulWidget<T extends StatefulWidget> on State<T> {
     _isEnsureInitialized = true;
   }
 
+  /// GeneralLibraryFlutter
   bool isLoading = false;
 
+  /// GeneralLibraryFlutter
   Future<void> refresh();
 
+  /// GeneralLibraryFlutter
   Future<void> refreshState({
     required FutureOr<dynamic> Function() onRefresh,
     FutureOr<dynamic> Function(Object e, StackTrace stackTrace)? onError,

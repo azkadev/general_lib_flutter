@@ -38,14 +38,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+/// GeneralLibraryFlutter
 typedef AnyObjectAutoKeepStateDataReturnData<T> = ({
+  /// GeneralLibraryFlutter
   T data,
+
+  /// GeneralLibraryFlutter
   bool isRefresh,
 });
 
+/// GeneralLibraryFlutter
 typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T>
     = FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> Function(
-        AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData);
+  /// GeneralLibraryFlutter
+  AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData,
+);
 
 /// auto save data to memory ram
 ///
@@ -73,27 +80,55 @@ typedef AnyObjectAutoKeepStateDataOnGetDataReFresh<T>
 ///
 ///
 class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
+  /// GeneralLibraryFlutter
   T data;
+
+  /// GeneralLibraryFlutter
   DateTime date_time_expire = DateTime.now();
+
+  /// GeneralLibraryFlutter
   Duration duration_expire;
+
+  /// GeneralLibraryFlutter
   bool is_no_expire;
+
+  /// GeneralLibraryFlutter
   AnyObjectAutoKeepStateDataOnGetDataReFresh<T>? onGetDataReFresh;
+
+  /// GeneralLibraryFlutter
   bool is_skip_auto_set_date_time_expire;
+
+  /// GeneralLibraryFlutter
   bool is_pending_operation = false;
+
+  /// GeneralLibraryFlutter
   AnyObjectAutoKeepStateData({
+    /// GeneralLibraryFlutter
     required this.data,
+
+    /// GeneralLibraryFlutter
     this.is_no_expire = false,
+
+    /// GeneralLibraryFlutter
     this.onGetDataReFresh,
+
+    /// GeneralLibraryFlutter
     required this.duration_expire,
+
+    /// GeneralLibraryFlutter
     this.is_skip_auto_set_date_time_expire = false,
   });
 
+  /// GeneralLibraryFlutter
   void update() {
     notifyListeners();
   }
 
+  /// GeneralLibraryFlutter
   FutureOr<AnyObjectAutoKeepStateDataReturnData<T>> defaultOnGetDataRefresh(
-      AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData) async {
+    /// GeneralLibraryFlutter
+    AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData,
+  ) async {
     return (data: data, isRefresh: false);
   }
 
@@ -113,6 +148,7 @@ class AnyObjectAutoKeepStateData<T> extends ChangeNotifier {
     return new_data.data;
   }
 
+  /// GeneralLibraryFlutter
   void reset({
     void Function(AnyObjectAutoKeepStateData<T> anyObjectAutoKeepStateData)?
         onReset,

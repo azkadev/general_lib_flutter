@@ -38,6 +38,7 @@ import 'package:flutter/material.dart';
 extension ExtensionGeneralLibFLutterOnAlignmentGeometry on AlignmentGeometry {
   /// general
   CrossAxisAlignment toCrossAxisAlignment({
+    /// GeneralLibraryFlutter
     CrossAxisAlignment? defaultCrossAxisAlignment,
   }) {
     if ([Alignment.centerLeft, Alignment.bottomLeft, Alignment.topLeft]

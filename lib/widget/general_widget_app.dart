@@ -38,14 +38,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
 
+/// GeneralLibraryFlutter
 class GeneralLibFlutterApp extends ChangeNotifier {
+  /// GeneralLibraryFlutter
   ThemeMode themeMode = ThemeMode.system;
 
+  /// GeneralLibraryFlutter
   AlignmentGeometry switchInitialPosition = Alignment.center;
+
+  /// GeneralLibraryFlutter
   AlignmentGeometry switchLastKnownPosition = Alignment.centerLeft;
+
+  /// GeneralLibraryFlutter
   bool is_has_set_theme_status_bar_first = false;
+
+  /// GeneralLibraryFlutter
   GeneralLibFlutterApp();
 
+  /// GeneralLibraryFlutter
   ThemeMode autoChangeThemeMode() {
     switch (switchInitialPosition) {
       case Alignment.centerLeft:
@@ -92,8 +102,12 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     return themeMode;
   }
 
+  /// GeneralLibraryFlutter
   void autoChangeSystemUi({
+    /// GeneralLibraryFlutter
     required ThemeMode theme_mode,
+
+    /// GeneralLibraryFlutter
     required Brightness Function() onChangeBrightness,
   }) {
     setSystemUIOverlayStyle(
@@ -104,8 +118,12 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// GeneralLibraryFlutter
   void setSystemUIOverlayStyle({
+    /// GeneralLibraryFlutter
     required ThemeMode theme_mode,
+
+    /// GeneralLibraryFlutter
     required Brightness Function() onChangeBrightness,
   }) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -116,8 +134,12 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     );
   }
 
+  /// GeneralLibraryFlutter
   SystemUiOverlayStyle getSystemUiOverlayStyle({
+    /// GeneralLibraryFlutter
     required ThemeMode themeMode,
+
+    /// GeneralLibraryFlutter
     required Brightness Function() onChangeBrightness,
   }) {
     if (themeMode == ThemeMode.dark) {
@@ -146,18 +168,27 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     }
   }
 
-  ThemeMode autoChangeTheme(
-      {required Brightness Function() onChangeBrightness}) {
-    ThemeMode theme_mode = autoChangeThemeMode();
+  /// GeneralLibraryFlutter
+  ThemeMode autoChangeTheme({
+    /// GeneralLibraryFlutter
+    required Brightness Function() onChangeBrightness,
+  }) {
+    final ThemeMode theme_mode = autoChangeThemeMode();
     autoChangeSystemUi(
         theme_mode: theme_mode, onChangeBrightness: onChangeBrightness);
     notifyListeners();
     return theme_mode;
   }
 
+  /// GeneralLibraryFlutter
   void initState({
+    /// GeneralLibraryFlutter
     required BuildContext context,
+
+    /// GeneralLibraryFlutter
     required ThemeMode themeMode,
+
+    /// GeneralLibraryFlutter
     required void Function() onSet,
   }) {
     if (is_has_set_theme_status_bar_first == false) {
@@ -173,10 +204,12 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     }
   }
 
+  /// GeneralLibraryFlutter
   void update() {
     notifyListeners();
   }
 
+  /// GeneralLibraryFlutter
   static ThemeData lightTheme_default() {
     final ThemeData themeData = ThemeData.light();
     const colorScheme = ColorScheme.light();
@@ -227,6 +260,7 @@ class GeneralLibFlutterApp extends ChangeNotifier {
     );
   }
 
+  /// GeneralLibraryFlutter
   static ThemeData darkTheme_default() {
     final ThemeData themeData = ThemeData.dark();
     const colorScheme = ColorScheme.dark();
@@ -272,34 +306,75 @@ class GeneralLibFlutterApp extends ChangeNotifier {
   }
 }
 
+/// GeneralLibraryFlutter
 class GeneralLibFlutterAppMain extends StatelessWidget {
+  /// GeneralLibraryFlutter
   final GeneralLibFlutterApp generalLibFlutterApp;
+
+  /// GeneralLibraryFlutter
   final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
       lightTheme;
+
+  /// GeneralLibraryFlutter
   final ThemeData Function(BuildContext context, ThemeData defaultTheme)?
       darkTheme;
+
+  /// GeneralLibraryFlutter
   final Widget? child;
+
+  /// GeneralLibraryFlutter
   final bool isAutoInitialized;
+
+  /// GeneralLibraryFlutter
   final bool isCanPop;
-  final Widget Function(ThemeMode themeMode, ThemeData lightTheme,
-      ThemeData darkTheme, Widget? widget) builder;
+
+  /// GeneralLibraryFlutter
+  final Widget Function(
+    /// GeneralLibraryFlutter
+    ThemeMode themeMode,
+
+    /// GeneralLibraryFlutter
+    ThemeData lightTheme,
+
+    /// GeneralLibraryFlutter
+    ThemeData darkTheme,
+
+    /// GeneralLibraryFlutter
+    Widget? widget,
+  ) builder;
 
   const GeneralLibFlutterAppMain({
+    /// GeneralLibraryFlutter
     super.key,
+
+    /// GeneralLibraryFlutter
     this.isCanPop = false,
+
+    /// GeneralLibraryFlutter
     required this.generalLibFlutterApp,
+
+    /// GeneralLibraryFlutter
     this.isAutoInitialized = true,
+
+    /// GeneralLibraryFlutter
     this.lightTheme,
+
+    /// GeneralLibraryFlutter
     this.darkTheme,
-    // required this.theme_notifier,
+
+    /// GeneralLibraryFlutter
     required this.builder,
+
+    /// GeneralLibraryFlutter
     this.child,
   });
 
+  /// GeneralLibraryFlutter
   ThemeData lightTheme_default() {
     return GeneralLibFlutterApp.lightTheme_default();
   }
 
+  /// GeneralLibraryFlutter
   ThemeData darkTheme_default() {
     return GeneralLibFlutterApp.darkTheme_default();
   }

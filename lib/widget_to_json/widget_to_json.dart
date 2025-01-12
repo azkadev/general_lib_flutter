@@ -37,7 +37,9 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 import 'package:flutter/material.dart' as material_widget;
 import 'package:flutter/rendering.dart';
 
+/// GeneralLibraryFlutter
 extension WidgetToJson on material_widget.Widget {
+  /// GeneralLibraryFlutter
   Map toMap() {
     Map jsonData = {
       "@type": runtimeType.toString(),
@@ -52,12 +54,15 @@ extension WidgetToJson on material_widget.Widget {
     return jsonData;
   }
 
+  /// GeneralLibraryFlutter
   Map toJson() {
     return widgetToJson(widget: this);
   }
 }
 
+/// GeneralLibraryFlutter
 extension WidgetNullToJson on material_widget.Widget? {
+  /// GeneralLibraryFlutter
   Map toMap() {
     Map jsonData = {
       "@type": runtimeType.toString(),
@@ -72,12 +77,14 @@ extension WidgetNullToJson on material_widget.Widget? {
     return jsonData;
   }
 
+  /// GeneralLibraryFlutter
   Map? toJson() {
     return widgetToJson(
         widget: this ?? const material_widget.SizedBox.shrink());
   }
 }
 
+/// GeneralLibraryFlutter
 Map widgetToJson({
   required material_widget.Widget widget,
   material_widget.Widget? notSupportedWidget,
