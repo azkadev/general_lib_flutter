@@ -34,7 +34,9 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
 
+/// UncompleteDocumentation
 extension TabControllerExtension on TabController {
+  /// UncompleteDocumentation
   Future<void> animateFromTo({
     int fromIndex = 0,
     required int toIndex,
@@ -61,7 +63,7 @@ extension TabControllerExtension on TabController {
       );
     }
     return;
-  }
+  }/// UncompleteDocumentation
 
   Future<void> animateFromMinToMax({
     Duration delayDuration = const Duration(milliseconds: 500),
@@ -71,7 +73,7 @@ extension TabControllerExtension on TabController {
       delayDuration: delayDuration,
     );
   }
-
+/// UncompleteDocumentation
   Future<void> animateFromMaxToMin({
     Duration delayDuration = const Duration(milliseconds: 500),
   }) async {

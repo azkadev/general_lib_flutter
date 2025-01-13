@@ -36,8 +36,9 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+/// UncompleteDocumentation
 extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
+  /// UncompleteDocumentation
   T readStateData<T>({
     required BuildContext context,
     required String key,
@@ -48,7 +49,7 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
     } catch (e) {
       return onNotFound(context, key);
     }
-  }
+  }/// UncompleteDocumentation
 
   T? readStateDataOrNull<T>({
     required BuildContext context,
@@ -60,7 +61,7 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
       return null;
     }
   }
-
+/// UncompleteDocumentation
   void writeStateData<T>({
     required BuildContext context,
     required String key,
@@ -68,7 +69,7 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
   }) {
     writeState(context, value, identifier: key);
   }
-
+/// UncompleteDocumentation
   void removes({
     required BuildContext context,
     required List<String> keys,
@@ -80,7 +81,7 @@ extension PageStorageBucketGeneralLibFlutterExtension on PageStorageBucket {
       remove(context: context, key: key.trim());
     }
   }
-
+/// UncompleteDocumentation
   void remove({
     required BuildContext context,
     required String key,

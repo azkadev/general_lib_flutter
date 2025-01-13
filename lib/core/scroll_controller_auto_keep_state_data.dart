@@ -103,7 +103,7 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
   void update() {
     notifyListeners();
   }
-
+/// UncompleteDocumentation
   final ValueNotifier<bool> valueNotifierIsScrolling = ValueNotifier(false);
 
   /// listen scroll
@@ -119,14 +119,14 @@ class ScrollControllerAutoKeepStateData extends ChangeNotifier {
       }
     });
   }
-
+/// UncompleteDocumentation
   bool isAtEdge() {
     try {
       return scroll_controller.position.atEdge;
     } catch (e) {}
     return false;
   }
-
+/// UncompleteDocumentation
   Alignment alignment() {
     if (isAtEdge()) {
       try {

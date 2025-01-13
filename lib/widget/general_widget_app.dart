@@ -342,7 +342,7 @@ class GeneralLibFlutterAppMain extends StatelessWidget {
     /// GeneralLibraryFlutter
     Widget? widget,
   ) builder;
-
+/// UncompleteDocumentation
   const GeneralLibFlutterAppMain({
     /// GeneralLibraryFlutter
     super.key,

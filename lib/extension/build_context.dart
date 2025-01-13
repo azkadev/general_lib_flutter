@@ -92,7 +92,7 @@ extension BuildContextExtension<T> on BuildContext {
   Orientation get orientation {
     return mediaQueryData.orientation;
   }
-
+/// UncompleteDocumentation
   double paddingTop({
     bool isTopPadding = true,
     bool isRightPadding = true,
@@ -111,30 +111,30 @@ extension BuildContextExtension<T> on BuildContext {
       return padding_data.left;
     }
   }
-
+/// UncompleteDocumentation
   bool get isMobile {
     return mediaQueryData.size.width <= 500.0;
   }
-
+/// UncompleteDocumentation
   bool get isTablet {
     return mediaQueryData.size.width < 1024.0 &&
         mediaQueryData.size.width >= 650.0;
   }
-
+/// UncompleteDocumentation
   bool get isSmallTablet {
     return mediaQueryData.size.width < 650.0 &&
         mediaQueryData.size.width > 500.0;
   }
-
+/// UncompleteDocumentation
   bool get isDesktop {
     return mediaQueryData.size.width >= 1024.0;
   }
-
+/// UncompleteDocumentation
   bool get isSmall {
     return mediaQueryData.size.width < 850.0 &&
         mediaQueryData.size.width >= 560.0;
   }
-
+/// UncompleteDocumentation
   double get width {
     try {
       return mediaQueryData.size.width;
@@ -142,77 +142,75 @@ extension BuildContextExtension<T> on BuildContext {
       return 0;
     }
   }
-
+/// UncompleteDocumentation
   double get height {
     try {
       return mediaQueryData.size.height;
     } catch (e) {
       return 0;
     }
-  }
+  }/// UncompleteDocumentation
 
   Size get size {
     return mediaQueryData.size;
   }
-
+/// UncompleteDocumentation
   TextStyle? get displayMedium => theme.textTheme.displayMedium;
-
+/// UncompleteDocumentation
   TextStyle? get displaySmall => theme.textTheme.displaySmall;
-
+/// UncompleteDocumentation
   TextStyle? get headlineLarge => theme.textTheme.headlineLarge;
-
+/// UncompleteDocumentation
   TextStyle? get headlineMedium => theme.textTheme.headlineMedium;
-
+/// UncompleteDocumentation
   TextStyle? get titleLarge => theme.textTheme.titleLarge;
-
+/// UncompleteDocumentation
   TextStyle? get titleMedium => theme.textTheme.titleMedium;
-
+/// UncompleteDocumentation
   TextStyle? get titleSmall => theme.textTheme.titleSmall;
-
+/// UncompleteDocumentation
   TextStyle? get labelLarge => theme.textTheme.labelLarge;
-
+/// UncompleteDocumentation
   TextStyle? get bodySmall => theme.textTheme.bodySmall;
-
+/// UncompleteDocumentation
   TextStyle? get titleTextStyle => theme.appBarTheme.titleTextStyle;
-
+/// UncompleteDocumentation
   TextStyle? get bodyExtraSmall =>
       bodySmall?.copyWith(fontSize: 10, height: 1.6, letterSpacing: .5);
-
+/// UncompleteDocumentation
   TextStyle? get bodyLarge => theme.textTheme.bodyLarge;
-
+/// UncompleteDocumentation
   TextStyle? get dividerTextSmall => bodySmall?.copyWith(
       letterSpacing: 0.5, fontWeight: FontWeight.w700, fontSize: 12.0);
-
+/// UncompleteDocumentation
   TextStyle? get dividerTextLarge => bodySmall?.copyWith(
       letterSpacing: 1.5,
       fontWeight: FontWeight.w700,
       fontSize: 13.0,
       height: 1.23);
-
-  // colors
+/// UncompleteDocumentation
   ThemeData get theme => Theme.of(this);
-
-  // colors
+/// UncompleteDocumentation
   Color get primaryColor => theme.primaryColor;
-
+/// UncompleteDocumentation
   Color get primaryColorDark => theme.primaryColorDark;
-
+/// UncompleteDocumentation
   Color get primaryColorLight => theme.primaryColorLight;
-
+/// UncompleteDocumentation
   Color get primary => theme.colorScheme.primary;
-
+/// UncompleteDocumentation
   Color get onPrimary => theme.colorScheme.onPrimary;
-
+/// UncompleteDocumentation
   Color get secondary => theme.colorScheme.secondary;
-
+/// UncompleteDocumentation
   Color get onSecondary => theme.colorScheme.onSecondary;
-
+/// UncompleteDocumentation
   Color get cardColor => theme.cardColor;
-
+/// UncompleteDocumentation
   Color get errorColor => theme.colorScheme.error;
-
+/// UncompleteDocumentation
   Color get background => theme.colorScheme.surface;
-
+/// UncompleteDocumentation
   Future<T?> showBottomSheet(
     Widget child, {
     bool isScrollControlled = true,
@@ -231,10 +229,10 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     );
   }
-
+/// UncompleteDocumentation
   ScaffoldMessengerState get scaffoldMessenger {
     return ScaffoldMessenger.of(this);
-  }
+  }/// UncompleteDocumentation
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
       String message) {
@@ -245,7 +243,7 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     );
   }
-
+/// UncompleteDocumentation
   Future<B?> showDialog<B>({
     required Widget Function(BuildContext context) builder,
     bool barrierDismissible = true,
@@ -276,7 +274,7 @@ extension BuildContextExtension<T> on BuildContext {
       },
     );
   }
-
+/// UncompleteDocumentation
   Future<Uint8List?> toImagePng({
     double pixelRatio = 1.0,
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
@@ -303,7 +301,7 @@ extension BuildContextExtension<T> on BuildContext {
       return null;
     }
   }
-
+/// UncompleteDocumentation
   Future<void> animateScroll({
     double alignment = 0.0,
     Duration? duration,
@@ -318,14 +316,14 @@ extension BuildContextExtension<T> on BuildContext {
       alignmentPolicy: alignmentPolicy,
       alignment: alignment,
     );
-  }
+  }/// UncompleteDocumentation
 
   Size sizeRenderBox() {
     try {
       return (findRenderObject() as RenderBox).size;
     } catch (e) {}
     return Size.zero;
-  }
+  }/// UncompleteDocumentation
 
   Size sizeStatusTopBar() {
     try {
@@ -335,7 +333,7 @@ extension BuildContextExtension<T> on BuildContext {
     } catch (e) {}
     return Size.zero;
   }
-
+/// UncompleteDocumentation
   Size sizeStatusBottomBar() {
     try {
       return Size.fromHeight(
@@ -344,7 +342,7 @@ extension BuildContextExtension<T> on BuildContext {
     } catch (e) {}
     return Size.zero;
   }
-
+/// UncompleteDocumentation
   // ignore: avoid_shadowing_type_parameters
   Future<T?> showLoadingCircularProgressIndicator<T>({
     bool barrierDismissible = false,
@@ -374,7 +372,7 @@ extension BuildContextExtension<T> on BuildContext {
       },
     );
   }
-
+/// UncompleteDocumentation
   BoxDecoration extensionGeneralLibFlutterBoxDecoration({
     required bool isUseBorderAll,
     required bool isUseBoxShadow,
@@ -384,12 +382,13 @@ extension BuildContextExtension<T> on BuildContext {
       boxShadow: isUseBoxShadow ? extensionGeneralLibFlutterBoxShadows() : null,
     );
   }
+  /// UncompleteDocumentation
 
   Border extensionGeneralLibFlutterBorderAll() {
     return Border.all(
       color: theme.indicatorColor,
     );
-  }
+  }/// UncompleteDocumentation
 
   List<BoxShadow> extensionGeneralLibFlutterBoxShadows() {
     return [
@@ -401,6 +400,7 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     ];
   }
+  /// UncompleteDocumentation
 
   List<Shadow> extensionGeneralLibFlutterShadows() {
     return [
@@ -412,14 +412,14 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     ];
   }
-
+/// UncompleteDocumentation
   Size extensionGeneralLibFlutterSizePhotoLarge() {
     final size_procces = (height + width) * .2;
     return Size(
       size_procces,
       size_procces,
     );
-  }
+  }/// UncompleteDocumentation
 
   Size extensionGeneralLibFlutterSizePhotoMedium() {
     final size_procces = (height + width) * .1;
@@ -428,7 +428,7 @@ extension BuildContextExtension<T> on BuildContext {
       size_procces,
     );
   }
-
+/// UncompleteDocumentation
   Size extensionGeneralLibFlutterSizePhotoSmall() {
     final size_procces = (height + width) * .025;
     return Size(

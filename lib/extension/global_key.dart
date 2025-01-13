@@ -40,13 +40,14 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:general_lib_flutter/extension/build_context.dart';
 
+/// UncompleteDocumentation
 extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
+  /// UncompleteDocumentation
   Future<void> animateScroll({
     double alignment = 0.0,
     Duration? duration,
     Curve curve = Curves.ease,
-    ScrollPositionAlignmentPolicy alignmentPolicy =
-        ScrollPositionAlignmentPolicy.explicit,
+    ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit,
   }) async {
     return await currentContext!.animateScroll(
       alignment: alignment,
@@ -56,15 +57,15 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     );
   }
 
+  /// UncompleteDocumentation
+
   Offset? toOffset({
     void Function(Object error, StackTrace stackTrace)? onError,
   }) {
     try {
       final renderBox = currentContext?.findRenderObject() as RenderBox?;
       if (renderBox == null) return null;
-      Offset offset = renderBox
-          .localToGlobal(Offset.zero)
-          .translate(renderBox.size.width / 2, renderBox.size.height / 2);
+      Offset offset = renderBox.localToGlobal(Offset.zero).translate(renderBox.size.width / 2, renderBox.size.height / 2);
       return offset;
     } catch (e, stack) {
       if (onError != null) {
@@ -73,6 +74,8 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
       return null;
     }
   }
+
+  /// UncompleteDocumentation
 
   Future<Uint8List?> toImagePng({
     double pixelRatio = 1.0,
@@ -91,6 +94,7 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     }
   }
 
+  /// UncompleteDocumentation
   Size sizeRenderBox() {
     try {
       return (currentContext!).sizeRenderBox();
@@ -98,6 +102,7 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     return Size.zero;
   }
 
+  /// UncompleteDocumentation
   Size? sizeRenderBoxOrNull() {
     try {
       Size size = sizeRenderBox();
@@ -108,6 +113,8 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     } catch (e) {}
     return null;
   }
+
+  /// UncompleteDocumentation
 
   skoak() {}
 }
