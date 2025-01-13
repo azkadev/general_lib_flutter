@@ -92,7 +92,8 @@ extension BuildContextExtension<T> on BuildContext {
   Orientation get orientation {
     return mediaQueryData.orientation;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   double paddingTop({
     bool isTopPadding = true,
     bool isRightPadding = true,
@@ -111,30 +112,36 @@ extension BuildContextExtension<T> on BuildContext {
       return padding_data.left;
     }
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isMobile {
     return mediaQueryData.size.width <= 500.0;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isTablet {
     return mediaQueryData.size.width < 1024.0 &&
         mediaQueryData.size.width >= 650.0;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isSmallTablet {
     return mediaQueryData.size.width < 650.0 &&
         mediaQueryData.size.width > 500.0;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isDesktop {
     return mediaQueryData.size.width >= 1024.0;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isSmall {
     return mediaQueryData.size.width < 850.0 &&
         mediaQueryData.size.width >= 560.0;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   double get width {
     try {
       return mediaQueryData.size.width;
@@ -142,75 +149,104 @@ extension BuildContextExtension<T> on BuildContext {
       return 0;
     }
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   double get height {
     try {
       return mediaQueryData.size.height;
     } catch (e) {
       return 0;
     }
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Size get size {
     return mediaQueryData.size;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get displayMedium => theme.textTheme.displayMedium;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get displaySmall => theme.textTheme.displaySmall;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get headlineLarge => theme.textTheme.headlineLarge;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get headlineMedium => theme.textTheme.headlineMedium;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get titleLarge => theme.textTheme.titleLarge;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get titleMedium => theme.textTheme.titleMedium;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get titleSmall => theme.textTheme.titleSmall;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get labelLarge => theme.textTheme.labelLarge;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get bodySmall => theme.textTheme.bodySmall;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get titleTextStyle => theme.appBarTheme.titleTextStyle;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get bodyExtraSmall =>
       bodySmall?.copyWith(fontSize: 10, height: 1.6, letterSpacing: .5);
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get bodyLarge => theme.textTheme.bodyLarge;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get dividerTextSmall => bodySmall?.copyWith(
       letterSpacing: 0.5, fontWeight: FontWeight.w700, fontSize: 12.0);
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   TextStyle? get dividerTextLarge => bodySmall?.copyWith(
       letterSpacing: 1.5,
       fontWeight: FontWeight.w700,
       fontSize: 13.0,
       height: 1.23);
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   ThemeData get theme => Theme.of(this);
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get primaryColor => theme.primaryColor;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get primaryColorDark => theme.primaryColorDark;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get primaryColorLight => theme.primaryColorLight;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get primary => theme.colorScheme.primary;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get onPrimary => theme.colorScheme.onPrimary;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get secondary => theme.colorScheme.secondary;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get onSecondary => theme.colorScheme.onSecondary;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get cardColor => theme.cardColor;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get errorColor => theme.colorScheme.error;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Color get background => theme.colorScheme.surface;
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<T?> showBottomSheet(
     Widget child, {
     bool isScrollControlled = true,
@@ -229,10 +265,13 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   ScaffoldMessengerState get scaffoldMessenger {
     return ScaffoldMessenger.of(this);
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
       String message) {
@@ -243,7 +282,8 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<B?> showDialog<B>({
     required Widget Function(BuildContext context) builder,
     bool barrierDismissible = true,
@@ -274,7 +314,8 @@ extension BuildContextExtension<T> on BuildContext {
       },
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<Uint8List?> toImagePng({
     double pixelRatio = 1.0,
     FutureOr<void> Function(Object error, StackTrace stackTrace)? onError,
@@ -301,7 +342,8 @@ extension BuildContextExtension<T> on BuildContext {
       return null;
     }
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<void> animateScroll({
     double alignment = 0.0,
     Duration? duration,
@@ -316,14 +358,18 @@ extension BuildContextExtension<T> on BuildContext {
       alignmentPolicy: alignmentPolicy,
       alignment: alignment,
     );
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Size sizeRenderBox() {
     try {
       return (findRenderObject() as RenderBox).size;
     } catch (e) {}
     return Size.zero;
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Size sizeStatusTopBar() {
     try {
@@ -333,7 +379,8 @@ extension BuildContextExtension<T> on BuildContext {
     } catch (e) {}
     return Size.zero;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Size sizeStatusBottomBar() {
     try {
       return Size.fromHeight(
@@ -342,7 +389,8 @@ extension BuildContextExtension<T> on BuildContext {
     } catch (e) {}
     return Size.zero;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   // ignore: avoid_shadowing_type_parameters
   Future<T?> showLoadingCircularProgressIndicator<T>({
     bool barrierDismissible = false,
@@ -372,7 +420,8 @@ extension BuildContextExtension<T> on BuildContext {
       },
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   BoxDecoration extensionGeneralLibFlutterBoxDecoration({
     required bool isUseBorderAll,
     required bool isUseBoxShadow,
@@ -382,13 +431,16 @@ extension BuildContextExtension<T> on BuildContext {
       boxShadow: isUseBoxShadow ? extensionGeneralLibFlutterBoxShadows() : null,
     );
   }
+
   /// UncompleteDocumentation
 
   Border extensionGeneralLibFlutterBorderAll() {
     return Border.all(
       color: theme.indicatorColor,
     );
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   List<BoxShadow> extensionGeneralLibFlutterBoxShadows() {
     return [
@@ -400,6 +452,7 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     ];
   }
+
   /// UncompleteDocumentation
 
   List<Shadow> extensionGeneralLibFlutterShadows() {
@@ -412,14 +465,17 @@ extension BuildContextExtension<T> on BuildContext {
       ),
     ];
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Size extensionGeneralLibFlutterSizePhotoLarge() {
     final size_procces = (height + width) * .2;
     return Size(
       size_procces,
       size_procces,
     );
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Size extensionGeneralLibFlutterSizePhotoMedium() {
     final size_procces = (height + width) * .1;
@@ -428,7 +484,8 @@ extension BuildContextExtension<T> on BuildContext {
       size_procces,
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Size extensionGeneralLibFlutterSizePhotoSmall() {
     final size_procces = (height + width) * .025;
     return Size(

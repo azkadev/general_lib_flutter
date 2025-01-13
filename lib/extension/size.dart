@@ -35,17 +35,20 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 // ignore_for_file: non_constant_identifier_names
 
 import "package:flutter/material.dart";
+
 /// UncompleteDocumentation
 extension SizeGeneralLibFlutterExtension on Size {
   /// UncompleteDocumentation
   Size general_lib_flutter_increaseSize(Size size) {
     return Size(width + size.width, height + size.height);
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Size general_lib_flutter_dereaseSize(Size size) {
     return Size(width - size.width, height - size.height);
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Offset toOffset({
     required Alignment alignment,
   }) {

@@ -33,6 +33,7 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
+
 /// UncompleteDocumentation
 extension TextEditingControllerExtension on TextEditingController {
   /// UncompleteDocumentation
@@ -48,7 +49,8 @@ extension TextEditingControllerExtension on TextEditingController {
     }
     return;
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<void> delete({
     required String newText,
     Duration delayDuration = const Duration(milliseconds: 100),

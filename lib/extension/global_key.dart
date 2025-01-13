@@ -47,7 +47,8 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     double alignment = 0.0,
     Duration? duration,
     Curve curve = Curves.ease,
-    ScrollPositionAlignmentPolicy alignmentPolicy = ScrollPositionAlignmentPolicy.explicit,
+    ScrollPositionAlignmentPolicy alignmentPolicy =
+        ScrollPositionAlignmentPolicy.explicit,
   }) async {
     return await currentContext!.animateScroll(
       alignment: alignment,
@@ -65,7 +66,9 @@ extension GlobalKeyGeneralLibFlutterExtension on GlobalKey {
     try {
       final renderBox = currentContext?.findRenderObject() as RenderBox?;
       if (renderBox == null) return null;
-      Offset offset = renderBox.localToGlobal(Offset.zero).translate(renderBox.size.width / 2, renderBox.size.height / 2);
+      Offset offset = renderBox
+          .localToGlobal(Offset.zero)
+          .translate(renderBox.size.width / 2, renderBox.size.height / 2);
       return offset;
     } catch (e, stack) {
       if (onError != null) {

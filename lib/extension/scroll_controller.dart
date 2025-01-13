@@ -33,13 +33,15 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
+
 /// UncompleteDocumentation
 extension ScrollControllerExtension on ScrollController {
   /// UncompleteDocumentation
   void onScrolling(void Function(bool isScrolling) callback) {
     position.onScrolling(callback);
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<bool> scrollToGlobalKey({
     required GlobalKey globalKey,
     double alignment = 0.0,
@@ -60,7 +62,9 @@ extension ScrollControllerExtension on ScrollController {
       alignmentPolicy: alignmentPolicy,
     );
     return true;
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Future<void> scrollToMinimum({
     Duration duration = Durations.short4,
@@ -71,7 +75,9 @@ extension ScrollControllerExtension on ScrollController {
       duration: duration,
       curve: curve,
     );
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Future<void> scrollToMaximum({
     Duration duration = Durations.short4,
@@ -84,6 +90,7 @@ extension ScrollControllerExtension on ScrollController {
     );
   }
 }
+
 /// UncompleteDocumentation
 extension ScrollPositionExtension on ScrollPosition {
   /// UncompleteDocumentation

@@ -33,13 +33,15 @@ Bukan maksud kami menipu itu karena harga yang sudah di kalkulasi + bantuan tiba
 
 <!-- END LICENSE --> */
 import 'package:flutter/material.dart';
+
 /// UncompleteDocumentation
 extension OrientTationExtension on Orientation {
   /// UncompleteDocumentation
   bool get isLandscape {
     return (this == Orientation.landscape);
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   bool get isPortrait {
     return (this == Orientation.portrait);
   }

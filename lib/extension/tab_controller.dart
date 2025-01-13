@@ -63,7 +63,9 @@ extension TabControllerExtension on TabController {
       );
     }
     return;
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   Future<void> animateFromMinToMax({
     Duration delayDuration = const Duration(milliseconds: 500),
@@ -73,7 +75,8 @@ extension TabControllerExtension on TabController {
       delayDuration: delayDuration,
     );
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Future<void> animateFromMaxToMin({
     Duration delayDuration = const Duration(milliseconds: 500),
   }) async {

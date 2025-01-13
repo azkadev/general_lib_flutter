@@ -41,6 +41,7 @@ void main(List<String> args) {
 
   runApp(MyApp());
 }
+
 /// UncompleteDocumentation
 class MyApp extends StatelessWidget {
   /// UncompleteDocumentation
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return route.toMaterialApp();
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   final RouteGeneralLibFlutter route = RouteGeneralLibFlutter(
     onNotFoundRoute: (context, routeData) {
       return const HomePage();
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
     },
   );
 }
+
 /// UncompleteDocumentation
 class HomePage extends StatefulWidget {
   /// UncompleteDocumentation

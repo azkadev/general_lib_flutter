@@ -46,10 +46,11 @@ typedef OnHandleFunctionStateFullWidget<T> = FutureOr<dynamic> Function(
 ///// UncompleteDocumentation
 typedef OnHandleErrorStateFullWidget<T> = FutureOr<dynamic> Function(
     Object error, StackTrace stackTrace, T statefulWidget);
+
 /// UncompleteDocumentation
 extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
     on State<T> {
-      /// UncompleteDocumentation
+  /// UncompleteDocumentation
   void setStateAsync(
     FutureOr<dynamic> Function() fn, {
     void Function(Object e, StackTrace stackTrace)? onError,
@@ -67,7 +68,8 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
       }
     }
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   void setStateWithIgnoreError({
     required void Function() fn,
     void Function(Object e, StackTrace stackTrace)? onError,
@@ -82,7 +84,9 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
         onError(e, stack);
       }
     }
-  }/// UncompleteDocumentation
+  }
+
+  /// UncompleteDocumentation
 
   void handleFunction({
     required OnHandleFunctionStateFullWidget<T> onFunction,
@@ -101,21 +105,24 @@ extension GeneralLibFlutterStateExtension<T extends StatefulWidget>
       }
     });
   }
-/// UncompleteDocumentation
+
+  /// UncompleteDocumentation
   Orientation extension_general_lib_flutter_orientation() {
     return context.orientation;
   }
 }
+
 /// UncompleteDocumentation
 typedef HandleFunctionGeneralLibFlutter<T extends StatefulWidget> = void
     Function({
   required OnHandleFunctionStateFullWidget<T> onFunction,
   OnHandleErrorStateFullWidget<T>? onError,
 });
+
 /// UncompleteDocumentation
 extension StateGeneralLibFlutterGeneralLibFlutterStatelessWidgetExtension<
     T extends StatelessWidget> on T {
-      /// UncompleteDocumentation
+  /// UncompleteDocumentation
   Orientation extension_general_lib_flutter_orientation({
     required BuildContext context,
   }) {
