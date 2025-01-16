@@ -143,10 +143,10 @@ packages:
     dependency: "direct dev"
     description:
       name: general_lib
-      sha256: "675da67d0d8e784a4522f9253d69280c2a057292a777b583b5bc6c0a2097afc7"
+      sha256: bff531490838182bc0abc1c47df25d32ab14279e5ac5513fcd149193fef2efbf
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.58"
+    version: "0.0.60"
   http:
     dependency: transitive
     description:
@@ -175,10 +175,10 @@ packages:
     dependency: transitive
     description:
       name: io
-      sha256: "2ec25704aba361659e10e3e5f5d672068d332fc8ac516421d483a11e5cbd061e"
+      sha256: dfd5a80599cf0165756e3181807ed3e77daf6dd4137caaad72d0b7931597650b
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   io_universe:
     dependency: transitive
     description:
@@ -227,14 +227,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
-  mason_logger:
-    dependency: transitive
-    description:
-      name: mason_logger
-      sha256: b6d6d159927a4165f197ffc5993ea680dd41c59daf35bff23bae28390c09a36e
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1"
   matcher:
     dependency: transitive
     description:
@@ -396,10 +388,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "68d1e89a91ed61ad9c370f9f8b6effed9ae5e0ede22a270bdfa6daf79fc2290a"
+      sha256: "154360849a56b7b67331c21f09a386562d88903f90a1099c5987afc1912e1f29"
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.4"
+    version: "5.10.0"
   xml:
     dependency: transitive
     description:
