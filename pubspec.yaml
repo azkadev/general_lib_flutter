@@ -11,9 +11,9 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
   flutter_lints: '^5.0.0'
-  general_lib: '^0.0.63'
+  general_lib: '^0.0.67'
 dependency_overrides:
-  pointycastle: '3.8.0'
+  pointycastle: '4.0.0'
   mime: '^2.0.0'
 funding:
   - 'https://github.com/sponsors/azkadev'
@@ -22,3 +22,5 @@ repository: 'https://github.com/azkadev/general_lib_flutter'
 homepage: 'https://youtube.com/@azkadev'
 issue_tracker: 'https://t.me/DEVELOPER_GLOBAL_PUBLIC'
 documentation: 'https://youtube.com/@azkadev'
+project:
+  type: ''
