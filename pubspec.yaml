@@ -1,9 +1,9 @@
 name: 'general_lib_flutter'
 description: 'Library for make flutter more easy and more short with universal extension, utils, and more.'
-version: '0.0.41'
+version: '0.0.42'
 environment:
   sdk: '>=3.6.0 <4.0.0'
-  flutter: '>=3.10.0'
+  flutter: '>=3.29.0'
 dependencies:
   flutter:
     sdk: 'flutter'
@@ -11,7 +11,7 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
   flutter_lints: '^5.0.0'
-  general_lib: '^0.0.67'
+  general_lib: '^0.0.69'
 dependency_overrides:
   pointycastle: '4.0.0'
   mime: '^2.0.0'

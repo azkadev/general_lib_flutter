@@ -90,14 +90,6 @@ packages:
       relative: true
     source: path
     version: "0.0.41"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.1"
   leak_tracker:
     dependency: transitive
     description:
@@ -174,10 +166,10 @@ packages:
     dependency: "direct overridden"
     description:
       name: pointycastle
-      sha256: "70fe966348fe08c34bf929582f1d8247d9d9408130723206472b4687227e4333"
+      sha256: "92aa3841d083cc4b0f4709b5c74fd6409a3e6ba833ffc7dc6a8fee096366acf5"
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.0"
+    version: "4.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -257,4 +249,4 @@ packages:
     version: "14.3.1"
 sdks:
   dart: ">=3.7.0-0 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  flutter: ">=3.29.0"

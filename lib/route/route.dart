@@ -529,6 +529,7 @@ class RouterGeneralLibFlutter {
 
   /// GeneralLibraryFlutter
   void activate() {
+    // ignore: invalid_use_of_protected_member
     navigator.activate();
   }
 

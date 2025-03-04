@@ -408,7 +408,7 @@ extension BuildContextExtension<T> on BuildContext {
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: context.theme.dialogBackgroundColor,
+                color: context.theme.dialogTheme.backgroundColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: CircularProgressIndicator(

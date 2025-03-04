@@ -1,3 +1,7 @@
+## 0.0.42
+
+- New Version 0.0.42
+- Update Dependencies
 ## 0.0.41
 
 - New Version 0.0.41

@@ -234,7 +234,9 @@ class GeneralLibFlutterApp extends ChangeNotifier {
             ),
           ),
       indicatorColor: Colors.black,
-      dialogBackgroundColor: Colors.white,
+      dialogTheme: themeData.dialogTheme.copyWith(
+        backgroundColor: Colors.white,
+      ),
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
         backgroundColor: const Color.fromARGB(
@@ -283,7 +285,10 @@ class GeneralLibFlutterApp extends ChangeNotifier {
                       const TextStyle())
                   .copyWith(color: Colors.white)),
       indicatorColor: Colors.white,
-      dialogBackgroundColor: const Color.fromARGB(255, 64, 64, 64),
+
+      dialogTheme: themeData.dialogTheme.copyWith(
+        backgroundColor: const Color.fromARGB(255, 64, 64, 64),
+      ),
       cardColor: Colors.grey,
       appBarTheme: themeData.appBarTheme.copyWith(
         backgroundColor: const Color.fromARGB(
