@@ -11,7 +11,7 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
   flutter_lints: '^5.0.0'
-  general_lib: '^0.0.69'
+  general_lib: '^0.0.70'
 dependency_overrides:
   pointycastle: '4.0.0'
   mime: '^2.0.0'
